@@ -1,5 +1,4 @@
 import SwiftUI
-import core
 import model
 
 struct ContentView: View {
