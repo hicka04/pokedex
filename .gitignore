@@ -31,3 +31,10 @@ google-services.json
 
 # Android Profiling
 *.hprof
+*.iml
+
+# macOS
+.DS_Stora
+
+# iOS
+xcuserdata
