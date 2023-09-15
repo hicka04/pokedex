@@ -1,11 +1,12 @@
 import SwiftUI
 import core
+import model
 
 struct ContentView: View {
-	let greet = Greeting().greet()
+	let pokemon = Pokemon(id: 1, name: "bulbasaur")
 
 	var body: some View {
-		Text(greet)
+        Text(pokemon.name)
 	}
 }
 
