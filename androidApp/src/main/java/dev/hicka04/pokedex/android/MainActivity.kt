@@ -24,7 +24,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MyApplicationTheme {
+            PokedexTheme {
                 var pokemonList: List<Pokemon> by remember {
                     mutableStateOf(emptyList())
                 }
@@ -54,7 +54,7 @@ fun GreetingView(text: String) {
 @Preview
 @Composable
 fun DefaultPreview() {
-    MyApplicationTheme {
+    PokedexTheme {
         GreetingView("Hello, Android!")
     }
 }
