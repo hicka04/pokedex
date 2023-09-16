@@ -9,7 +9,7 @@ android {
     compileSdk = libs.versions.sdk.compile.get().toInt()
     defaultConfig {
         applicationId = "dev.hicka04.pokedex.android"
-        minSdk = 26
+        minSdk = libs.versions.sdk.min.get().toInt()
         targetSdk = libs.versions.sdk.target.get().toInt()
         versionCode = 1
         versionName = "1.0"

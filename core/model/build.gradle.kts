@@ -48,6 +48,6 @@ android {
     namespace = "dev.hicka04.pokedex.core.model"
     compileSdk = libs.versions.sdk.compile.get().toInt()
     defaultConfig {
-        minSdk = 26
+        minSdk = libs.versions.sdk.min.get().toInt()
     }
 }
