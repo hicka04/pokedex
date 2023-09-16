@@ -1,6 +1,7 @@
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id("com.android.application")
-    kotlin("android")
+    alias(libs.plugins.org.jetbrains.kotlin.android)
+    alias(libs.plugins.com.android.application)
 }
 
 android {
