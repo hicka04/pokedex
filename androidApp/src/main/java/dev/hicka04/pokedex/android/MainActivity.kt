@@ -19,6 +19,8 @@ import dev.hicka04.pokedex.core.domain.GetPokemonListUseCase
 import dev.hicka04.pokedex.core.model.Pokemon
 
 class MainActivity : ComponentActivity() {
+    private val getPokemonListUseCase = GetPokemonListUseCase()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -27,7 +29,7 @@ class MainActivity : ComponentActivity() {
                     mutableStateOf(emptyList())
                 }
                 LaunchedEffect(Unit) {
-                    pokemonList = GetPokemonListUseCase().invoke()
+                    pokemonList = getPokemonListUseCase()
                 }
                 Surface(
                     modifier = Modifier.fillMaxSize(),

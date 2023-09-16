@@ -4,6 +4,7 @@ import domain
 
 struct ContentView: View {
     @State var pokemonList: [ModelPokemon] = []
+    let getPokemonListUseCase = GetPokemonListUseCase()
 
 	var body: some View {
         List(pokemonList) { pokemon in
@@ -11,7 +12,7 @@ struct ContentView: View {
         }
         .task {
             do {
-                pokemonList = try await GetPokemonListUseCase().invoke()
+                pokemonList = try await getPokemonListUseCase()
             } catch {}
         }
 	}
