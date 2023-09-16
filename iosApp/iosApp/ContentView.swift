@@ -1,11 +1,19 @@
 import SwiftUI
 import model
+import domain
 
 struct ContentView: View {
-	let pokemon = Pokemon(id: 1, name: "bulbasaur")
+    @State var pokemonList: [ModelPokemon] = []
 
 	var body: some View {
-        Text(pokemon.name)
+        List(pokemonList) { pokemon in
+            Text(pokemon.name)
+        }
+        .task {
+            do {
+                pokemonList = try await GetPokemonListUseCase().invoke()
+            } catch {}
+        }
 	}
 }
 

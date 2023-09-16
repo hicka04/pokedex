@@ -4,10 +4,18 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import dev.hicka04.pokedex.core.domain.GetPokemonListUseCase
 import dev.hicka04.pokedex.core.model.Pokemon
 
 class MainActivity : ComponentActivity() {
@@ -15,13 +23,21 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MyApplicationTheme {
+                var pokemonList: List<Pokemon> by remember {
+                    mutableStateOf(emptyList())
+                }
+                LaunchedEffect(Unit) {
+                    pokemonList = GetPokemonListUseCase().invoke()
+                }
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    GreetingView(
-                        Pokemon(1, "bulbasaur").name
-                    )
+                    LazyColumn {
+                        items(pokemonList) {
+                            Text(text = it.name)
+                        }
+                    }
                 }
             }
         }

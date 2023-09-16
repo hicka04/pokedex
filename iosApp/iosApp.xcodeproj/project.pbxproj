@@ -12,6 +12,8 @@
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 		B8FE48182AB4AF1F00C3D305 /* model.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8FE48172AB4AF1F00C3D305 /* model.xcframework */; };
+		B8FE481A2AB534CD00C3D305 /* domain.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8FE48192AB534CD00C3D305 /* domain.xcframework */; };
+		B8FE481C2AB535F400C3D305 /* ModelPokemon+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FE481B2AB535F400C3D305 /* ModelPokemon+Identifiable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -35,6 +37,8 @@
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8FE48172AB4AF1F00C3D305 /* model.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = model.xcframework; path = ../core/model/build/XCFrameworks/debug/model.xcframework; sourceTree = "<group>"; };
+		B8FE48192AB534CD00C3D305 /* domain.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = domain.xcframework; path = ../core/domain/build/XCFrameworks/debug/domain.xcframework; sourceTree = "<group>"; };
+		B8FE481B2AB535F400C3D305 /* ModelPokemon+Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModelPokemon+Identifiable.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8FE481A2AB534CD00C3D305 /* domain.xcframework in Frameworks */,
 				B8FE48182AB4AF1F00C3D305 /* model.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -82,6 +87,7 @@
 				7555FF8C242A565B00829871 /* Info.plist */,
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
+				B8FE481B2AB535F400C3D305 /* ModelPokemon+Identifiable.swift */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -89,6 +95,7 @@
 		7555FFB0242A642200829871 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B8FE48192AB534CD00C3D305 /* domain.xcframework */,
 				B8FE48172AB4AF1F00C3D305 /* model.xcframework */,
 			);
 			name = Frameworks;
@@ -177,7 +184,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd \"$SRCROOT/..\"\n./gradlew :core:model:assembleXCFramework\n";
+			shellScript = "cd \"$SRCROOT/..\"\n./gradlew :core:model:assembleXCFramework\n./gradlew :core:domain:assembleXCFramework\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -187,6 +194,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				B8FE481C2AB535F400C3D305 /* ModelPokemon+Identifiable.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -245,7 +253,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -300,7 +308,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
