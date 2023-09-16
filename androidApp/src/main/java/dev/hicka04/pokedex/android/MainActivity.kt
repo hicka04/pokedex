@@ -15,6 +15,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import dev.hicka04.pokedex.core.designsystem.PokedexTheme
 import dev.hicka04.pokedex.core.domain.GetPokemonListUseCase
 import dev.hicka04.pokedex.core.model.Pokemon
 

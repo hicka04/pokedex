@@ -1,4 +1,4 @@
-package dev.hicka04.pokedex.android
+package dev.hicka04.pokedex.core.designsystem
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape
