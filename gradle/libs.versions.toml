@@ -2,6 +2,7 @@
 sdk-compile = "34"
 sdk-target = "34"
 sdk-min = "26"
+jvm = "1.8"
 activity-compose = "1.7.2"
 agp = "8.1.1"
 androidx-material = "1.5.1"
