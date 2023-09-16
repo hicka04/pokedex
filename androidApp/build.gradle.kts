@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "dev.hicka04.pokedex.android"
-    compileSdk = 34
+    compileSdk = libs.versions.sdk.compile.get().toInt()
     defaultConfig {
         applicationId = "dev.hicka04.pokedex.android"
         minSdk = 26

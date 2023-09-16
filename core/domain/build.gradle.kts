@@ -46,7 +46,7 @@ kotlin {
 
 android {
     namespace = "dev.hicka04.pokedex.core.domain"
-    compileSdk = 33
+    compileSdk = libs.versions.sdk.compile.get().toInt()
     defaultConfig {
         minSdk = 26
     }
