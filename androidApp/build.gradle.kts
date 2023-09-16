@@ -10,7 +10,7 @@ android {
     defaultConfig {
         applicationId = "dev.hicka04.pokedex.android"
         minSdk = 26
-        targetSdk = 34
+        targetSdk = libs.versions.sdk.target.get().toInt()
         versionCode = 1
         versionName = "1.0"
     }
