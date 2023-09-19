@@ -40,10 +40,9 @@
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B89584B02AB9C7F200A6F715 /* Feature */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Feature; sourceTree = "<group>"; };
 		B8A917B92AB591E900D66CE3 /* model.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = model.xcframework; path = ../../core/model/build/XCFrameworks/debug/model.xcframework; sourceTree = "<group>"; };
 		B8A917BC2AB5920A00D66CE3 /* domain.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = domain.xcframework; path = ../../core/domain/build/XCFrameworks/debug/domain.xcframework; sourceTree = "<group>"; };
-		B8FE48172AB4AF1F00C3D305 /* model.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = model.xcframework; path = ../core/model/build/XCFrameworks/debug/model.xcframework; sourceTree = "<group>"; };
-		B8FE48192AB534CD00C3D305 /* domain.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = domain.xcframework; path = ../core/domain/build/XCFrameworks/debug/domain.xcframework; sourceTree = "<group>"; };
 		B8FE481B2AB535F400C3D305 /* ModelPokemon+Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModelPokemon+Identifiable.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,6 +70,7 @@
 		7555FF72242A565900829871 = {
 			isa = PBXGroup;
 			children = (
+				B89584AF2AB9C7F200A6F715 /* Packages */,
 				7555FF7D242A565900829871 /* iosApp */,
 				7555FF7C242A565900829871 /* Products */,
 				7555FFB0242A642200829871 /* Frameworks */,
@@ -103,10 +103,16 @@
 			children = (
 				B8A917BC2AB5920A00D66CE3 /* domain.xcframework */,
 				B8A917B92AB591E900D66CE3 /* model.xcframework */,
-				B8FE48192AB534CD00C3D305 /* domain.xcframework */,
-				B8FE48172AB4AF1F00C3D305 /* model.xcframework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B89584AF2AB9C7F200A6F715 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				B89584B02AB9C7F200A6F715 /* Feature */,
+			);
+			name = Packages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

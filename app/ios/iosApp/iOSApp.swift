@@ -1,4 +1,5 @@
 import SwiftUI
+import PokemonList
 
 @main
 struct iOSApp: App {
