@@ -7,32 +7,34 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import dev.hicka04.pokedex.core.designsystem.PokedexTheme
-import dev.hicka04.pokedex.core.domain.GetPokemonListUseCase
 import dev.hicka04.pokedex.core.model.Pokemon
 
 @Composable
-fun PokemonListScreen() {
-    var pokemonList: List<Pokemon> by remember {
-        mutableStateOf(emptyList())
-    }
-    LaunchedEffect(Unit) {
-        pokemonList = GetPokemonListUseCase()()
-    }
+fun PokemonListScreen(
+    viewModel: PokemonListViewModel = viewModel()
+) {
+    val uiState by viewModel.uiState.collectAsState()
+
+    PokemonListScreen(uiState = uiState)
+}
+
+@Composable
+fun PokemonListScreen(
+    uiState: PokemonListUiState
+) {
     Scaffold(
         topBar = {
             TopAppBar(title = { Text("Pokedex") })
         },
         content = { paddingValues ->
             LazyColumn(modifier = Modifier.padding(paddingValues)) {
-                items(pokemonList) {
+                items(uiState.pokemonList) {
                     Text(text = it.name)
                 }
             }
@@ -44,6 +46,14 @@ fun PokemonListScreen() {
 @Composable
 fun PokemonListScreenPreview() {
     PokedexTheme {
-        PokemonListScreen()
+        PokemonListScreen(
+            uiState = PokemonListUiState(
+                pokemonList = listOf(
+                    Pokemon(1, "Bulbasaur"),
+                    Pokemon(2, "Ivysaur"),
+                    Pokemon(3, "Venusaur"),
+                ),
+            )
+        )
     }
 }
