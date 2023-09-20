@@ -26,14 +26,19 @@ kotlin {
     ).forEach {
         it.binaries.framework {
             baseName = "domain"
+            binaryOption("bundleId", "dev.hicka04.pokedex.core.domain")
+            binaryOption("bundleVersion", version.toString())
+            binaryOption("bundleShortVersionString", version.toString())
             xcf.add(this)
+
+            export(project(":core:model"))
         }
     }
 
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":core:model"))
+                api(project(":core:model"))
             }
         }
         val commonTest by getting {

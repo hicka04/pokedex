@@ -5,6 +5,9 @@ import PackageDescription
 
 let package = Package(
     name: "Feature",
+    platforms: [
+        .iOS(.v16)
+    ],
     products: [
         .library(
             name: "PokemonList",
@@ -18,6 +21,10 @@ let package = Package(
         .testTarget(
             name: "FeatureTests",
             dependencies: ["PokemonList"]
+        ),
+        .binaryTarget(
+            name: "domain",
+            path: "../../../core/domain/build/XCFrameworks/release/domain.xcframework"
         ),
     ]
 )

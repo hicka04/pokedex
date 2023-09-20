@@ -10,40 +10,18 @@
 		058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557BA273AAA24004C7B11 /* Assets.xcassets */; };
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
-		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
-		B8A917BA2AB591EA00D66CE3 /* model.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8A917B92AB591E900D66CE3 /* model.xcframework */; };
-		B8A917BB2AB591EA00D66CE3 /* model.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B8A917B92AB591E900D66CE3 /* model.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B8A917BD2AB5920A00D66CE3 /* domain.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8A917BC2AB5920A00D66CE3 /* domain.xcframework */; };
-		B8A917BE2AB5920A00D66CE3 /* domain.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B8A917BC2AB5920A00D66CE3 /* domain.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B8FE481C2AB535F400C3D305 /* ModelPokemon+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FE481B2AB535F400C3D305 /* ModelPokemon+Identifiable.swift */; };
+		B8841ED22ABB36F7000AA043 /* PokemonList in Frameworks */ = {isa = PBXBuildFile; productRef = B8841ED12ABB36F7000AA043 /* PokemonList */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		7555FFB4242A642300829871 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				B8A917BB2AB591EA00D66CE3 /* model.xcframework in Embed Frameworks */,
-				B8A917BE2AB5920A00D66CE3 /* domain.xcframework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		058557BA273AAA24004C7B11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B89584B02AB9C7F200A6F715 /* Feature */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Feature; sourceTree = "<group>"; };
 		B8A917B92AB591E900D66CE3 /* model.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = model.xcframework; path = ../../core/model/build/XCFrameworks/debug/model.xcframework; sourceTree = "<group>"; };
 		B8A917BC2AB5920A00D66CE3 /* domain.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = domain.xcframework; path = ../../core/domain/build/XCFrameworks/debug/domain.xcframework; sourceTree = "<group>"; };
-		B8FE481B2AB535F400C3D305 /* ModelPokemon+Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModelPokemon+Identifiable.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +29,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8A917BA2AB591EA00D66CE3 /* model.xcframework in Frameworks */,
-				B8A917BD2AB5920A00D66CE3 /* domain.xcframework in Frameworks */,
+				B8841ED22ABB36F7000AA043 /* PokemonList in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,11 +66,9 @@
 			isa = PBXGroup;
 			children = (
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
-				7555FF82242A565900829871 /* ContentView.swift */,
 				7555FF8C242A565B00829871 /* Info.plist */,
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
-				B8FE481B2AB535F400C3D305 /* ModelPokemon+Identifiable.swift */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -126,13 +101,15 @@
 				7555FF77242A565900829871 /* Sources */,
 				7555FF78242A565900829871 /* Frameworks */,
 				7555FF79242A565900829871 /* Resources */,
-				7555FFB4242A642300829871 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = iosApp;
+			packageProductDependencies = (
+				B8841ED12ABB36F7000AA043 /* PokemonList */,
+			);
 			productName = iosApp;
 			productReference = 7555FF7B242A565900829871 /* iosApp.app */;
 			productType = "com.apple.product-type.application";
@@ -209,8 +186,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
-				B8FE481C2AB535F400C3D305 /* ModelPokemon+Identifiable.swift in Sources */,
-				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +321,7 @@
 					"$(SRCROOT)/../../core/domain/build/XCFrameworks",
 				);
 				INFOPLIST_FILE = iosApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -371,6 +347,7 @@
 					"$(SRCROOT)/../../core/domain/build/XCFrameworks",
 				);
 				INFOPLIST_FILE = iosApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -405,6 +382,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B8841ED12ABB36F7000AA043 /* PokemonList */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PokemonList;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7555FF73242A565900829871 /* Project object */;
 }
