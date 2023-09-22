@@ -34,6 +34,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":core:model"))
+                implementation(libs.org.jetbrains.kotlinx.coroutines.core)
             }
         }
         val commonTest by getting {
