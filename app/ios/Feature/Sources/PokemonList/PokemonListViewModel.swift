@@ -6,7 +6,7 @@ final class PokemonListViewModel {
     let state = PokemonListScreen.State()
     let getPokemonListUseCase: GetPokemonListUseCase
 
-    init(getPokemonListUseCase: GetPokemonListUseCase = .init()) {
+    init(getPokemonListUseCase: GetPokemonListUseCase = GetPokemonListInteractor()) {
         self.getPokemonListUseCase = getPokemonListUseCase
     }
 
