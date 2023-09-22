@@ -1,5 +1,5 @@
 import SwiftUI
-import domain
+import shared
 
 public struct PokemonListScreen: View {
     @State var pokemonList: [Pokemon] = []

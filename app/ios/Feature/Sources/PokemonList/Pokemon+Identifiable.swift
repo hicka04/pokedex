@@ -1,3 +1,3 @@
-import domain
+import shared
 
 extension Pokemon: Identifiable {}

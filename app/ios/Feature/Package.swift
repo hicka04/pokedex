@@ -16,15 +16,18 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "PokemonList"
+            name: "PokemonList",
+            dependencies: [
+                "shared"
+            ]
         ),
         .testTarget(
             name: "FeatureTests",
             dependencies: ["PokemonList"]
         ),
         .binaryTarget(
-            name: "domain",
-            path: "../../../core/domain/build/XCFrameworks/release/domain.xcframework"
+            name: "shared",
+            path: "../../../shared/build/XCFrameworks/release/shared.xcframework"
         ),
     ]
 )
