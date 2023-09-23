@@ -11,7 +11,7 @@ org-jetbrains-kotlin-multiplatform = "1.8.21"
 # libraries
 ## main
 coroutines = "1.7.3"
-compose = "2023.09.00"
+compose = "2023.09.01"
 compose-compiler = "1.5.0"
 activity-compose = "1.7.2"
 lifecycle = "2.6.2"
