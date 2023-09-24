@@ -10,41 +10,32 @@ plugins {
 kotlin {
     targetHierarchy.default()
 
-    androidTarget {
+    android {
         compilations.all {
             kotlinOptions {
                 jvmTarget = libs.versions.jvm.get()
             }
         }
     }
-
+    
     val xcf = XCFramework()
     listOf(
         iosX64(),
         iosArm64(),
         iosSimulatorArm64()
     ).forEach {
-        it.binaries{
-            framework {
-                baseName = "shared"
-                binaryOption("bundleId", "dev.hicka04.pokedex.shared")
-                binaryOption("bundleVersion", version.toString())
-                binaryOption("bundleShortVersionString", version.toString())
-                xcf.add(this)
-
-                export(project(":core:model"))
-                export(project(":core:domain"))
-            }
+        it.binaries.framework {
+            baseName = "data"
+            xcf.add(this)
         }
     }
 
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api(project(":core:model"))
-                api(project(":core:domain"))
-
-                implementation(project(":core:data"))
+                implementation(project(":core:model"))
+                implementation(project(":core:domain"))
+                implementation(libs.org.jetbrains.kotlinx.coroutines.core)
                 implementation(libs.io.insert.koin.core)
             }
         }
@@ -57,7 +48,7 @@ kotlin {
 }
 
 android {
-    namespace = "dev.hicka04.pokedex.shared"
+    namespace = "dev.hicka04.pokedex.core.data"
     compileSdk = libs.versions.sdk.compile.get().toInt()
     defaultConfig {
         minSdk = libs.versions.sdk.min.get().toInt()
