@@ -47,4 +47,6 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.bundles.compose)
     implementation(libs.androidx.activity.compose)
+    implementation(libs.io.insert.koin.core)
+    implementation(libs.io.insert.koin.android)
 }

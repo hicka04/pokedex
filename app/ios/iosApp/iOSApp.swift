@@ -1,9 +1,14 @@
 import SwiftUI
+import shared
 import PokemonList
 
 @main
 struct iOSApp: App {
-	var body: some Scene {
+    init() {
+        KoinHelperKt.doInitKoin()
+    }
+
+    var body: some Scene {
 		WindowGroup {
 			PokemonListScreen()
 		}

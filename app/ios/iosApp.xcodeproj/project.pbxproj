@@ -10,8 +10,24 @@
 		058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557BA273AAA24004C7B11 /* Assets.xcassets */; };
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
+		B83728A82AC06F38005855E4 /* shared.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B83728A72AC06F38005855E4 /* shared.xcframework */; };
+		B83728A92AC06F38005855E4 /* shared.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B83728A72AC06F38005855E4 /* shared.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B8841ED22ABB36F7000AA043 /* PokemonList in Frameworks */ = {isa = PBXBuildFile; productRef = B8841ED12ABB36F7000AA043 /* PokemonList */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B83728AA2AC06F38005855E4 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B83728A92AC06F38005855E4 /* shared.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		058557BA273AAA24004C7B11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -19,6 +35,7 @@
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B83728A72AC06F38005855E4 /* shared.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = shared.xcframework; path = ../../shared/build/XCFrameworks/release/shared.xcframework; sourceTree = "<group>"; };
 		B89584B02AB9C7F200A6F715 /* Feature */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Feature; sourceTree = "<group>"; };
 		B8A917B92AB591E900D66CE3 /* model.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = model.xcframework; path = ../../core/model/build/XCFrameworks/debug/model.xcframework; sourceTree = "<group>"; };
 		B8A917BC2AB5920A00D66CE3 /* domain.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = domain.xcframework; path = ../../core/domain/build/XCFrameworks/debug/domain.xcframework; sourceTree = "<group>"; };
@@ -29,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B83728A82AC06F38005855E4 /* shared.xcframework in Frameworks */,
 				B8841ED22ABB36F7000AA043 /* PokemonList in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -76,6 +94,7 @@
 		7555FFB0242A642200829871 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B83728A72AC06F38005855E4 /* shared.xcframework */,
 				B8A917BC2AB5920A00D66CE3 /* domain.xcframework */,
 				B8A917B92AB591E900D66CE3 /* model.xcframework */,
 			);
@@ -101,6 +120,7 @@
 				7555FF77242A565900829871 /* Sources */,
 				7555FF78242A565900829871 /* Frameworks */,
 				7555FF79242A565900829871 /* Resources */,
+				B83728AA2AC06F38005855E4 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -317,8 +337,7 @@
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../../core/model/build/XCFrameworks",
-					"$(SRCROOT)/../../core/domain/build/XCFrameworks",
+					"$(SRCROOT)/../../shared/build/XCFrameworks",
 				);
 				INFOPLIST_FILE = iosApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -343,8 +362,7 @@
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../../core/model/build/XCFrameworks",
-					"$(SRCROOT)/../../core/domain/build/XCFrameworks",
+					"$(SRCROOT)/../../shared/build/XCFrameworks",
 				);
 				INFOPLIST_FILE = iosApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;

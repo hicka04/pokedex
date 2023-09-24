@@ -35,6 +35,8 @@ kotlin {
             dependencies {
                 implementation(project(":core:model"))
                 implementation(libs.org.jetbrains.kotlinx.coroutines.core)
+
+                implementation(libs.io.insert.koin.core)
             }
         }
         val commonTest by getting {

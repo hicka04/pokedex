@@ -1,5 +1,4 @@
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
-import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
@@ -44,6 +43,8 @@ kotlin {
             dependencies {
                 api(project(":core:model"))
                 api(project(":core:domain"))
+
+                implementation(libs.io.insert.koin.core)
             }
         }
         val commonTest by getting {

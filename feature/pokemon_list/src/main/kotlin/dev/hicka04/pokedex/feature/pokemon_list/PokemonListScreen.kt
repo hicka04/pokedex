@@ -11,13 +11,13 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.viewmodel.compose.viewModel
 import dev.hicka04.pokedex.core.designsystem.PokedexTheme
 import dev.hicka04.pokedex.core.model.Pokemon
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun PokemonListScreen(
-    viewModel: PokemonListViewModel = viewModel()
+    viewModel: PokemonListViewModel = koinViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
