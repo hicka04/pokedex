@@ -4,6 +4,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 plugins {
     alias(libs.plugins.org.jetbrains.kotlin.multiplatform)
     alias(libs.plugins.com.android.library)
+    alias(libs.plugins.org.jetbrains.kotlin.plugin.serialization)
 }
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
@@ -34,11 +35,23 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":core:model"))
+                implementation(libs.bundles.ktor.multiplatform)
+                implementation(libs.io.insert.koin.core)
             }
         }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
+            }
+        }
+        val androidMain by getting {
+            dependencies {
+                implementation(libs.bundles.ktor.android)
+            }
+        }
+        val iosMain by getting {
+            dependencies {
+                implementation(libs.bundles.ktor.ios)
             }
         }
     }

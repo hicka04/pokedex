@@ -7,6 +7,7 @@ jvm = "1.8"
 agp = "8.1.1"
 org-jetbrains-kotlin-android = "1.9.0"
 org-jetbrains-kotlin-multiplatform = "1.8.21"
+org-jetbrains-kotlin-plugin-serialization = "1.9.0"
 
 # libraries
 ## main
@@ -16,6 +17,7 @@ compose-compiler = "1.5.0"
 activity-compose = "1.7.2"
 lifecycle = "2.6.2"
 koin = "3.5.0"
+ktor = "2.3.4"
 
 ## test
 junit = "4.13.2"
@@ -37,6 +39,11 @@ androidx-lifecycle-viewmodel-savedstate = { group = "androidx.lifecycle", name =
 io-insert-koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
 io-insert-koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
 io-insert-koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin" }
+io-ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
+io-ktor-client-okhttp = { group = "io.ktor", name = "ktor-client-okhttp", version.ref = "ktor" }
+io-ktor-client-darwin = { group = "io.ktor", name = "ktor-client-darwin", version.ref = "ktor" }
+io-ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
+io-ktor-serialization-kotlinx-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
 
@@ -45,6 +52,7 @@ com-android-application = { id = "com.android.application", version.ref = "agp" 
 com-android-library = { id = "com.android.library", version.ref = "agp" }
 org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "org-jetbrains-kotlin-android" }
 org-jetbrains-kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "org-jetbrains-kotlin-multiplatform" }
+org-jetbrains-kotlin-plugin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "org-jetbrains-kotlin-plugin-serialization" }
 
 [bundles]
 compose = [
@@ -59,4 +67,15 @@ lifecycle = [
     "androidx-lifecycle-viewmodel-compose",
     "androidx-lifecycle-runtime-compose",
     "androidx-lifecycle-viewmodel-savedstate",
+]
+ktor-multiplatform = [
+    "io-ktor-client-core",
+    "io-ktor-client-content-negotiation",
+    "io-ktor-serialization-kotlinx-json",
+]
+ktor-android = [
+    "io-ktor-client-okhttp"
+]
+ktor-ios = [
+    "io-ktor-client-darwin"
 ]
