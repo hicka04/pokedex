@@ -7,6 +7,7 @@ pluginManagement {
 }
 
 dependencyResolutionManagement {
+    @Suppress("UnstableApiUsage")
     repositories {
         google()
         mavenCentral()
@@ -19,5 +20,6 @@ include(":shared")
 include(":core:model")
 include(":core:domain")
 include(":core:data")
+include(":core:network")
 include(":core:designsystem")
 include(":feature:pokemon_list")

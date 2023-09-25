@@ -25,7 +25,7 @@ kotlin {
         iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
-            baseName = "data"
+            baseName = "network"
             xcf.add(this)
         }
     }
@@ -34,10 +34,6 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":core:model"))
-                implementation(project(":core:domain"))
-                implementation(project(":core:network"))
-                implementation(libs.org.jetbrains.kotlinx.coroutines.core)
-                implementation(libs.io.insert.koin.core)
             }
         }
         val commonTest by getting {
@@ -49,7 +45,7 @@ kotlin {
 }
 
 android {
-    namespace = "dev.hicka04.pokedex.core.data"
+    namespace = "dev.hicka04.pokedex.core.network"
     compileSdk = libs.versions.sdk.compile.get().toInt()
     defaultConfig {
         minSdk = libs.versions.sdk.min.get().toInt()
