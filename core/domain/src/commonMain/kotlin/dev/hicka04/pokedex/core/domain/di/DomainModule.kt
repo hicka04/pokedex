@@ -1,7 +1,7 @@
 package dev.hicka04.pokedex.core.domain.di
 
-import dev.hicka04.pokedex.core.domain.GetPokemonListInteractor
-import dev.hicka04.pokedex.core.domain.GetPokemonListUseCase
+import dev.hicka04.pokedex.core.domain.usecase.GetPokemonListInteractor
+import dev.hicka04.pokedex.core.domain.usecase.GetPokemonListUseCase
 import org.koin.core.module.dsl.factoryOf
 import org.koin.dsl.bind
 import org.koin.dsl.module

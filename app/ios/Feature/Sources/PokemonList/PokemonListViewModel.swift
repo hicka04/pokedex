@@ -6,7 +6,13 @@ final class PokemonListViewModel {
     let state = PokemonListScreen.State()
     let getPokemonListUseCase: GetPokemonListUseCase
 
-    init(getPokemonListUseCase: GetPokemonListUseCase = GetPokemonListInteractor()) {
+    convenience init() {
+        self.init(
+            getPokemonListUseCase: SharedComponent.shared.getPokemonListUseCase()
+        )
+    }
+
+    init(getPokemonListUseCase: GetPokemonListUseCase) {
         self.getPokemonListUseCase = getPokemonListUseCase
     }
 

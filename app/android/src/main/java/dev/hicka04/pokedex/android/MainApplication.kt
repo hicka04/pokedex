@@ -1,6 +1,7 @@
 package dev.hicka04.pokedex.android
 
 import android.app.Application
+import dev.hicka04.pokedex.core.data.di.dataModule
 import dev.hicka04.pokedex.core.domain.di.domainModule
 import dev.hicka04.pokedex.feature.pokemon_list.di.featurePokemonListModule
 import org.koin.android.ext.koin.androidContext
@@ -20,6 +21,7 @@ class MainApplication: Application() {
             modules(
                 listOf(
                     domainModule,
+                    dataModule,
                     featurePokemonListModule,
                 )
             )

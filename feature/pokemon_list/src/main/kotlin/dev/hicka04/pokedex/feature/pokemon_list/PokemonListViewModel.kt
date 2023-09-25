@@ -2,7 +2,7 @@ package dev.hicka04.pokedex.feature.pokemon_list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dev.hicka04.pokedex.core.domain.GetPokemonListUseCase
+import dev.hicka04.pokedex.core.domain.usecase.GetPokemonListUseCase
 import dev.hicka04.pokedex.core.model.Pokemon
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
