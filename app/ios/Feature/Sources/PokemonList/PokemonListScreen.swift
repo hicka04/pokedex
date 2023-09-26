@@ -1,8 +1,9 @@
 import SwiftUI
 import shared
 
+@MainActor
 public struct PokemonListScreen: View {
-    @StateObject var viewModel = PokemonListViewModel()
+    let viewModel = PokemonListViewModel()
 
     public init() {}
 
@@ -27,14 +28,12 @@ extension PokemonListScreen {
     }
 }
 
-struct PokemonListScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        PokemonListScreen.ContentView(
-            pokemonList: [
-                .init(id: 1, name: "Bulbasaur"),
-                .init(id: 2, name: "Ivysaur"),
-                .init(id: 3, name: "Venusaur"),
-            ]
-        )
-    }
+#Preview("\(PokemonListScreen.self)") {
+    PokemonListScreen.ContentView(
+        pokemonList: [
+            .init(id: 1, name: "Bulbasaur"),
+            .init(id: 2, name: "Ivysaur"),
+            .init(id: 3, name: "Venusaur"),
+        ]
+    )
 }

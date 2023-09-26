@@ -1,9 +1,10 @@
 import Foundation
 import shared
+import Observation
 
-@MainActor
-final class PokemonListViewModel: ObservableObject {
-    @Published private(set) var pokemonList: [Pokemon] = []
+@MainActor @Observable
+final class PokemonListViewModel {
+    private(set) var pokemonList: [Pokemon] = []
 
     private let getPokemonListUseCase: GetPokemonListUseCase
 
