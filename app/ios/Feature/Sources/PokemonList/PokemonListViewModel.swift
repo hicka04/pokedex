@@ -2,9 +2,10 @@ import Foundation
 import shared
 
 @MainActor
-final class PokemonListViewModel {
-    let state = PokemonListScreen.State()
-    let getPokemonListUseCase: GetPokemonListUseCase
+final class PokemonListViewModel: ObservableObject {
+    @Published private(set) var pokemonList: [Pokemon] = []
+
+    private let getPokemonListUseCase: GetPokemonListUseCase
 
     convenience init() {
         self.init(
@@ -18,7 +19,7 @@ final class PokemonListViewModel {
 
     @Sendable func onAppear() async {
         do {
-            state.pokemonList = try await getPokemonListUseCase()
+            pokemonList = try await getPokemonListUseCase()
         } catch {
             // TODO: handle error
         }
