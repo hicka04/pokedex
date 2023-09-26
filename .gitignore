@@ -34,7 +34,7 @@ google-services.json
 *.iml
 
 # macOS
-.DS_Stora
+.DS_Store
 
 # iOS
 xcuserdata
