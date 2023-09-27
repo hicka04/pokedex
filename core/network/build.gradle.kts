@@ -35,6 +35,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":core:model"))
+                implementation(libs.org.jetbrains.kotlinx.coroutines.core)
                 implementation(libs.bundles.ktor.multiplatform)
                 implementation(libs.io.insert.koin.core)
             }

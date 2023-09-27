@@ -22,7 +22,10 @@ extension PokemonListScreen {
 
         var body: some View {
             List(pokemonList) { pokemon in
-                Text(pokemon.name)
+                HStack {
+                    Text("No.\(pokemon.id)")
+                    Text(pokemon.name)
+                }
             }.task(onAppear)
         }
     }

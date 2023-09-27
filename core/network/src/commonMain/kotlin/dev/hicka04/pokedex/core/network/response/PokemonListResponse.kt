@@ -1,4 +1,4 @@
-package dev.hicka04.pokedex.core.network
+package dev.hicka04.pokedex.core.network.response
 
 import kotlinx.serialization.Serializable
 
