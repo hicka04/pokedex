@@ -25,5 +25,5 @@ class PokeApi {
         client.get("$baseUrl/pokemon")
             .body<PokemonListResponse>()
             .results
-            .mapIndexed { index, pokemonResponse -> Pokemon(index, pokemonResponse.name) }
+            .mapIndexed { index, item -> Pokemon(index, item.name) }
 }
