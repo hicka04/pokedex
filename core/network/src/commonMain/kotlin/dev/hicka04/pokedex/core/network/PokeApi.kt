@@ -30,7 +30,7 @@ class PokeApi {
         client.get("$baseUrl/pokemon")
             .body<PokemonListResponse>()
             .results
-            .map { fetchPokemon(it.name) }
+            .mapAsync { fetchPokemon(it.name) }
 
     private suspend fun fetchPokemon(name: String): Pokemon =
         client.get("$baseUrl/pokemon/$name")
