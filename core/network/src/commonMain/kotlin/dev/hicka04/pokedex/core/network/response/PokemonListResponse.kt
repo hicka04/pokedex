@@ -4,7 +4,7 @@ import dev.hicka04.pokedex.core.network.response.common.NamedResponse
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class PokemonListResponse(
+internal data class PokemonListResponse(
     val count: Int,
     val results: List<NamedResponse>
 )
