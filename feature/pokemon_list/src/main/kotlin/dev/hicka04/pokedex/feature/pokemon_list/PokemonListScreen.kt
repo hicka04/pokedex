@@ -1,6 +1,7 @@
 package dev.hicka04.pokedex.feature.pokemon_list
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -40,7 +41,18 @@ fun PokemonListScreen(
                 items(uiState.pokemonList) {
                     Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         Text(text = "No.${it.id}")
-                        Text(text = it.name)
+
+                        Column {
+                            Text(text = it.name)
+                            Row(
+                                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                            ) {
+                                Text(text = it.types.first.name)
+                                it.types.second?.let {
+                                    Text(text = it.name)
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -55,9 +67,30 @@ fun PokemonListScreenPreview() {
         PokemonListScreen(
             uiState = PokemonListUiState(
                 pokemonList = listOf(
-                    Pokemon(1, "Bulbasaur"),
-                    Pokemon(2, "Ivysaur"),
-                    Pokemon(3, "Venusaur"),
+                    Pokemon(
+                        id = 1,
+                        name = "Bulbasaur",
+                        types = Pokemon.Types(
+                            first = Pokemon.Type.GRASS,
+                            second = Pokemon.Type.POISON
+                        )
+                    ),
+                    Pokemon(
+                        id = 2,
+                        name = "Ivysaur",
+                        types = Pokemon.Types(
+                            first = Pokemon.Type.GRASS,
+                            second = Pokemon.Type.POISON
+                        )
+                    ),
+                    Pokemon(
+                        id = 3,
+                        name = "Venusaur",
+                        types = Pokemon.Types(
+                            first = Pokemon.Type.GRASS,
+                            second = Pokemon.Type.POISON
+                        )
+                    ),
                 ),
             )
         )

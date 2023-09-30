@@ -10,6 +10,10 @@ data class PokemonResponse(
 ) {
     fun toEntity() = Pokemon(
         id = id,
-        name = name
+        name = name,
+        types = Pokemon.Types(
+            first = Pokemon.Type.valueOf("grass".uppercase()),
+            second = Pokemon.Type.valueOf("poison".uppercase())
+        )
     )
 }

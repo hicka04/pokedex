@@ -22,9 +22,19 @@ extension PokemonListScreen {
 
         var body: some View {
             List(pokemonList) { pokemon in
-                HStack {
+                HStack(alignment: .top) {
                     Text("No.\(pokemon.id)")
-                    Text(pokemon.name)
+
+                    VStack(alignment: .leading) {
+                        Text(pokemon.name)
+                        HStack {
+                            Text(pokemon.types.first.name)
+
+                            if let second = pokemon.types.second {
+                                Text(second.name)
+                            }
+                        }
+                    }
                 }
             }.task(onAppear)
         }
@@ -34,9 +44,30 @@ extension PokemonListScreen {
 #Preview("\(PokemonListScreen.self)") {
     PokemonListScreen.ContentView(
         pokemonList: [
-            .init(id: 1, name: "Bulbasaur"),
-            .init(id: 2, name: "Ivysaur"),
-            .init(id: 3, name: "Venusaur"),
+            .init(
+                id: 1,
+                name: "Bulbasaur",
+                types: .init(
+                    first: .grass,
+                    second: .poison
+                )
+            ),
+            .init(
+                id: 2,
+                name: "Ivysaur",
+                types: .init(
+                    first: .grass,
+                    second: .poison
+                )
+            ),
+            .init(
+                id: 3,
+                name: "Venusaur",
+                types: .init(
+                    first: .grass,
+                    second: .poison
+                )
+            ),
         ]
     )
 }
