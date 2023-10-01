@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="type_normal">#9099a1</color>
+    <color name="type_fire">#ff9c54</color>
+    <color name="type_water">#4d90d5</color>
+    <color name="type_electric">#f3d23b</color>
+    <color name="type_grass">#63bb5b</color>
+    <color name="type_ice">#74cec0</color>
+    <color name="type_fighting">#ce4069</color>
+    <color name="type_poison">#ab6ac8</color>
+    <color name="type_ground">#d97746</color>
+    <color name="type_flying">#8fa8dd</color>
+    <color name="type_psychic">#f97176</color>
+    <color name="type_bug">#90c12c</color>
+    <color name="type_rock">#c7b78b</color>
+    <color name="type_ghost">#5269ac</color>
+    <color name="type_dragon">#0a6dc4</color>
+    <color name="type_dark">#5a5366</color>
+    <color name="type_steel">#5a8ea1</color>
+    <color name="type_fairy">#ec8fe6</color>
+</resources>
