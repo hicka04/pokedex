@@ -3,9 +3,11 @@ package dev.hicka04.pokedex.feature.pokemon_list
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
@@ -15,6 +17,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import dev.hicka04.pokedex.core.designsystem.PokedexTheme
 import dev.hicka04.pokedex.core.model.Pokemon
 import org.koin.androidx.compose.koinViewModel
@@ -37,18 +40,33 @@ fun PokemonListScreen(
             TopAppBar(title = { Text("Pokedex") })
         },
         content = { paddingValues ->
-            LazyColumn(modifier = Modifier.padding(paddingValues)) {
-                items(uiState.pokemonList) {
-                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        Text(text = "No.${it.id}")
+            LazyColumn(
+                modifier = Modifier.padding(paddingValues),
+                state = rememberLazyListState()
+            ) {
+                items(uiState.pokemonList) { pokemon ->
+                    Column(
+                        verticalArrangement = Arrangement.spacedBy(16.dp),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp)
+                    ) {
+                        AsyncImage(
+                            model = pokemon.sprites.officialArtwork,
+                            contentDescription = "official artwork of ${pokemon.name}"
+                        )
 
                         Column {
-                            Text(text = it.name)
+                            Text(text = "No.${pokemon.id}")
+                            Text(text = pokemon.name)
+                        }
+
+                        Row {
                             Row(
                                 horizontalArrangement = Arrangement.spacedBy(8.dp)
                             ) {
-                                Text(text = it.types.first.name)
-                                it.types.second?.let {
+                                Text(text = pokemon.types.first.name)
+                                pokemon.types.second?.let {
                                     Text(text = it.name)
                                 }
                             }
@@ -73,7 +91,10 @@ fun PokemonListScreenPreview() {
                         types = Pokemon.Types(
                             first = Pokemon.Type.GRASS,
                             second = Pokemon.Type.POISON
-                        )
+                        ),
+                        sprites = Pokemon.Sprites(
+                            officialArtwork = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
+                        ),
                     ),
                     Pokemon(
                         id = 2,
@@ -81,7 +102,10 @@ fun PokemonListScreenPreview() {
                         types = Pokemon.Types(
                             first = Pokemon.Type.GRASS,
                             second = Pokemon.Type.POISON
-                        )
+                        ),
+                        sprites = Pokemon.Sprites(
+                            officialArtwork = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png"
+                        ),
                     ),
                     Pokemon(
                         id = 3,
@@ -89,7 +113,10 @@ fun PokemonListScreenPreview() {
                         types = Pokemon.Types(
                             first = Pokemon.Type.GRASS,
                             second = Pokemon.Type.POISON
-                        )
+                        ),
+                        sprites = Pokemon.Sprites(
+                            officialArtwork = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/3.png"
+                        ),
                     ),
                 ),
             )

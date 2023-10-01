@@ -4,7 +4,7 @@ sdk-compile = "34"
 sdk-target = "34"
 sdk-min = "26"
 jvm = "1.8"
-agp = "8.1.1"
+agp = "8.1.2"
 org-jetbrains-kotlin-android = "1.9.0"
 org-jetbrains-kotlin-multiplatform = "1.9.10"
 org-jetbrains-kotlin-plugin-serialization = "1.9.0"
@@ -19,6 +19,7 @@ activity-compose = "1.7.2"
 lifecycle = "2.6.2"
 koin = "3.5.0"
 ktor = "2.3.4"
+coil = "2.4.0"
 
 ## test
 junit = "4.13.2"
@@ -45,6 +46,8 @@ io-ktor-client-okhttp = { group = "io.ktor", name = "ktor-client-okhttp", versio
 io-ktor-client-darwin = { group = "io.ktor", name = "ktor-client-darwin", version.ref = "ktor" }
 io-ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
 io-ktor-serialization-kotlinx-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
+io-coil-kt-coil = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
+io-coil-kt-coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
 
@@ -80,4 +83,8 @@ ktor-android = [
 ]
 ktor-ios = [
     "io-ktor-client-darwin"
+]
+coil = [
+    "io-coil-kt-coil",
+    "io-coil-kt-coil-compose"
 ]

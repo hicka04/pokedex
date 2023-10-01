@@ -22,17 +22,28 @@ extension PokemonListScreen {
 
         var body: some View {
             List(pokemonList) { pokemon in
-                HStack(alignment: .top) {
-                    Text("No.\(pokemon.id)")
+                VStack {
+                    GeometryReader { proxy in
+                        AsyncImage(
+                            url: URL(string: pokemon.sprites.officialArtwork),
+                            content: { $0.resizable() },
+                            placeholder: { ProgressView() }
+                        ).frame(
+                            width: min(proxy.size.width, proxy.size.height),
+                            height: min(proxy.size.width, proxy.size.height)
+                        )
+                    }.scaledToFit()
 
                     VStack(alignment: .leading) {
+                        Text("No.\(pokemon.id)")
                         Text(pokemon.name)
-                        HStack {
-                            Text(pokemon.types.first.name)
+                    }
 
-                            if let second = pokemon.types.second {
-                                Text(second.name)
-                            }
+                    HStack {
+                        Text(pokemon.types.first.name)
+
+                        if let second = pokemon.types.second {
+                            Text(second.name)
                         }
                     }
                 }
@@ -50,6 +61,9 @@ extension PokemonListScreen {
                 types: .init(
                     first: .grass,
                     second: .poison
+                ),
+                sprites: .init(
+                    officialArtwork: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
                 )
             ),
             .init(
@@ -58,6 +72,9 @@ extension PokemonListScreen {
                 types: .init(
                     first: .grass,
                     second: .poison
+                ),
+                sprites: .init(
+                    officialArtwork: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png"
                 )
             ),
             .init(
@@ -66,6 +83,9 @@ extension PokemonListScreen {
                 types: .init(
                     first: .grass,
                     second: .poison
+                ),
+                sprites: .init(
+                    officialArtwork: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/3.png"
                 )
             ),
         ]

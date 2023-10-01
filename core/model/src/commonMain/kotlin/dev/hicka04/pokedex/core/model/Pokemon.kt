@@ -3,7 +3,8 @@ package dev.hicka04.pokedex.core.model
 data class Pokemon(
     val id: Int,
     val name: String,
-    val types: Types
+    val types: Types,
+    val sprites: Sprites,
 ) {
     data class Types(
         val first: Type,
@@ -31,4 +32,8 @@ data class Pokemon(
         FAIRY,
         ;
     }
+
+    data class Sprites(
+        val officialArtwork: String
+    )
 }
