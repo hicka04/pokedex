@@ -14,11 +14,15 @@ let package = Package(
             targets: ["PokemonList"]
         ),
     ],
+    dependencies: [
+        .package(path: "../Core")
+    ],
     targets: [
         .target(
             name: "PokemonList",
             dependencies: [
-                "shared"
+                "shared",
+                .product(name: "DesignSystem", package: "Core")
             ]
         ),
         .testTarget(
