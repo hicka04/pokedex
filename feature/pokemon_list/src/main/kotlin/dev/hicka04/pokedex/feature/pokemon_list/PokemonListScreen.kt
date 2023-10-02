@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
@@ -20,6 +21,8 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import dev.hicka04.pokedex.core.designsystem.PokedexTheme
 import dev.hicka04.pokedex.core.model.Pokemon
+import dev.hicka04.pokedex.core.ui.color
+import dev.hicka04.pokedex.core.ui.painter
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -65,9 +68,22 @@ fun PokemonListScreen(
                             Row(
                                 horizontalArrangement = Arrangement.spacedBy(8.dp)
                             ) {
-                                Text(text = pokemon.types.first.name)
-                                pokemon.types.second?.let {
-                                    Text(text = it.name)
+                                pokemon.types.first.let { type ->
+                                    Icon(
+                                        painter = type.painter(),
+                                        contentDescription = type.name,
+                                        tint = type.color()
+                                    )
+                                    Text(text = type.name)
+                                }
+
+                                pokemon.types.second?.let { type ->
+                                    Icon(
+                                        painter = type.painter(),
+                                        contentDescription = type.name,
+                                        tint = type.color()
+                                    )
+                                    Text(text = type.name)
                                 }
                             }
                         }

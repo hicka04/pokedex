@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "dev.hicka04.pokedex.feature.pokemon_list"
+    namespace = "dev.hicka04.pokedex.core.ui"
     compileSdk = libs.versions.sdk.compile.get().toInt()
 
     defaultConfig {
@@ -40,15 +40,9 @@ android {
 
 dependencies {
     implementation(project(":core:model"))
-    implementation(project(":core:domain"))
     implementation(project(":core:designsystem"))
-    implementation(project(":core:ui"))
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.bundles.compose)
-    implementation(libs.bundles.lifecycle)
-    implementation(libs.io.insert.koin.core)
-    implementation(libs.io.insert.koin.androidx.compose)
-    implementation(libs.bundles.coil)
     testImplementation(libs.junit)
     androidTestImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)

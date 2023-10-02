@@ -21,17 +21,14 @@ let package = Package(
         .target(
             name: "PokemonList",
             dependencies: [
-                "shared",
-                .product(name: "DesignSystem", package: "Core")
+                .product(name: "shared", package: "Core"),
+                .product(name: "DesignSystem", package: "Core"),
+                .product(name: "UI", package: "Core")
             ]
         ),
         .testTarget(
             name: "FeatureTests",
             dependencies: ["PokemonList"]
-        ),
-        .binaryTarget(
-            name: "shared",
-            path: "../../../shared/build/XCFrameworks/release/shared.xcframework"
         ),
     ]
 )

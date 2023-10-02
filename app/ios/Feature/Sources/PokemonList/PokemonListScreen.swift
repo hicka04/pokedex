@@ -1,5 +1,6 @@
 import SwiftUI
 import shared
+import UI
 
 @MainActor
 public struct PokemonListScreen: View {
@@ -40,14 +41,17 @@ extension PokemonListScreen {
                     }
 
                     HStack {
+                        pokemon.types.first.icon
                         Text(pokemon.types.first.name)
 
                         if let second = pokemon.types.second {
+                            second.icon
                             Text(second.name)
                         }
                     }
                 }
             }.task(onAppear)
+            Text("hoge")
         }
     }
 }

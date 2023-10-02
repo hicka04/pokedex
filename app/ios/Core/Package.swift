@@ -13,6 +13,14 @@ let package = Package(
             name: "DesignSystem",
             targets: ["DesignSystem"]
         ),
+        .library(
+            name: "UI",
+            targets: ["UI"]
+        ),
+        .library(
+            name: "shared",
+            targets: ["shared"]
+        ),
     ],
     dependencies: [
         .package(url: "https://github.com/SwiftGen/SwiftGenPlugin", from: "6.6.0")
@@ -24,8 +32,19 @@ let package = Package(
                 .plugin(name: "SwiftGenPlugin", package: "SwiftGenPlugin")
             ]
         ),
+        .target(
+            name: "UI",
+            dependencies: [
+                "DesignSystem",
+                "shared"
+            ]
+        ),
         .testTarget(
             name: "CoreTests"
+        ),
+        .binaryTarget(
+            name: "shared",
+            path: "../../../shared/build/XCFrameworks/release/shared.xcframework"
         ),
     ]
 )
