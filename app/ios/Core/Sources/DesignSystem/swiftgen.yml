@@ -1,0 +1,11 @@
+output_dir: ${DERIVED_SOURCES_DIR}
+
+xcassets:
+  - inputs:
+      - Resources
+    outputs:
+      - templateName: swift5
+        output: Assets.generated.swift
+        params:
+          enumName: DesignSystem
+          publicAccess: true

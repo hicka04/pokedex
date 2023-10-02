@@ -5,15 +5,24 @@ import PackageDescription
 
 let package = Package(
     name: "Core",
+    platforms: [
+        .iOS(.v17)
+    ],
     products: [
         .library(
             name: "DesignSystem",
             targets: ["DesignSystem"]
         ),
     ],
+    dependencies: [
+        .package(url: "https://github.com/SwiftGen/SwiftGenPlugin", from: "6.6.0")
+    ],
     targets: [
         .target(
-            name: "DesignSystem"
+            name: "DesignSystem",
+            plugins: [
+                .plugin(name: "SwiftGenPlugin", package: "SwiftGenPlugin")
+            ]
         ),
         .testTarget(
             name: "CoreTests"
