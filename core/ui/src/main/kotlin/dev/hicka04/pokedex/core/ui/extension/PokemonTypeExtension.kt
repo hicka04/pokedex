@@ -1,4 +1,4 @@
-package dev.hicka04.pokedex.core.ui
+package dev.hicka04.pokedex.core.ui.extension
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color

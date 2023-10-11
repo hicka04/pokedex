@@ -18,11 +18,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
 import dev.hicka04.pokedex.core.designsystem.PokedexTheme
 import dev.hicka04.pokedex.core.model.Pokemon
-import dev.hicka04.pokedex.core.ui.color
-import dev.hicka04.pokedex.core.ui.painter
+import dev.hicka04.pokedex.core.ui.component.OfficialArtworkImage
+import dev.hicka04.pokedex.core.ui.extension.color
+import dev.hicka04.pokedex.core.ui.extension.painter
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -54,10 +54,7 @@ fun PokemonListScreen(
                             .fillMaxWidth()
                             .padding(16.dp)
                     ) {
-                        AsyncImage(
-                            model = pokemon.sprites.officialArtwork,
-                            contentDescription = "official artwork of ${pokemon.name}"
-                        )
+                        OfficialArtworkImage(url = pokemon.sprites.officialArtwork)
 
                         Column {
                             Text(text = "No.${pokemon.id}")

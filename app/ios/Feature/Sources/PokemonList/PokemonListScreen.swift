@@ -24,16 +24,7 @@ extension PokemonListScreen {
         var body: some View {
             List(pokemonList) { pokemon in
                 VStack {
-                    GeometryReader { proxy in
-                        AsyncImage(
-                            url: URL(string: pokemon.sprites.officialArtwork),
-                            content: { $0.resizable() },
-                            placeholder: { ProgressView() }
-                        ).frame(
-                            width: min(proxy.size.width, proxy.size.height),
-                            height: min(proxy.size.width, proxy.size.height)
-                        )
-                    }.scaledToFit()
+                    OfficialArtworkImage(urlString: pokemon.sprites.officialArtwork)
 
                     VStack(alignment: .leading) {
                         Text("No.\(pokemon.id)")
@@ -51,7 +42,6 @@ extension PokemonListScreen {
                     }
                 }
             }.task(onAppear)
-            Text("hoge")
         }
     }
 }
