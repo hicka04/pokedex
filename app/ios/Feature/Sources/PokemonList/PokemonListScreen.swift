@@ -32,12 +32,10 @@ extension PokemonListScreen {
                     }
 
                     HStack {
-                        pokemon.types.first.icon
-                        Text(pokemon.types.first.name)
+                        TypeTag(type: pokemon.types.first)
 
                         if let second = pokemon.types.second {
-                            second.icon
-                            Text(second.name)
+                            TypeTag(type: second)
                         }
                     }
                 }

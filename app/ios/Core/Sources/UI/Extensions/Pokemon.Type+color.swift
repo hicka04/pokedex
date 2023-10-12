@@ -2,7 +2,7 @@ import DesignSystem
 import shared
 import SwiftUI
 
-public extension Pokemon.Type_ {
+extension Pokemon.Type_ {
     var color: Color {
         switch self {
         case .normal: DesignSystem.Colors.Types.normal.swiftUIColor

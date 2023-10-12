@@ -21,8 +21,7 @@ import androidx.compose.ui.unit.dp
 import dev.hicka04.pokedex.core.designsystem.PokedexTheme
 import dev.hicka04.pokedex.core.model.Pokemon
 import dev.hicka04.pokedex.core.ui.component.OfficialArtworkImage
-import dev.hicka04.pokedex.core.ui.extension.color
-import dev.hicka04.pokedex.core.ui.extension.painter
+import dev.hicka04.pokedex.core.ui.component.TypeTag
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -65,22 +64,10 @@ fun PokemonListScreen(
                             Row(
                                 horizontalArrangement = Arrangement.spacedBy(8.dp)
                             ) {
-                                pokemon.types.first.let { type ->
-                                    Icon(
-                                        painter = type.painter(),
-                                        contentDescription = type.name,
-                                        tint = type.color()
-                                    )
-                                    Text(text = type.name)
-                                }
+                                TypeTag(type = pokemon.types.first)
 
                                 pokemon.types.second?.let { type ->
-                                    Icon(
-                                        painter = type.painter(),
-                                        contentDescription = type.name,
-                                        tint = type.color()
-                                    )
-                                    Text(text = type.name)
+                                    TypeTag(type = type)
                                 }
                             }
                         }

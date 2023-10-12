@@ -9,7 +9,7 @@ import dev.hicka04.pokedex.core.designsystem.R
 import dev.hicka04.pokedex.core.model.Pokemon
 
 @Composable
-fun Pokemon.Type.color(): Color = colorResource(
+internal fun Pokemon.Type.color(): Color = colorResource(
     when (this) {
         Pokemon.Type.NORMAL -> R.color.type_normal
         Pokemon.Type.FIRE -> R.color.type_fire
@@ -33,7 +33,7 @@ fun Pokemon.Type.color(): Color = colorResource(
 )
 
 @Composable
-fun Pokemon.Type.painter(): Painter = painterResource(
+internal fun Pokemon.Type.painter(): Painter = painterResource(
     when (this) {
         Pokemon.Type.NORMAL -> R.drawable.type_normal
         Pokemon.Type.FIRE -> R.drawable.type_fire
