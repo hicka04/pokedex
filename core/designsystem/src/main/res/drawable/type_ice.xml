@@ -1,4 +1,24 @@
-<vector android:height="48dp" android:viewportHeight="58"
-    android:viewportWidth="58" android:width="48dp" xmlns:android="http://schemas.android.com/apk/res/android">
-    <path android:fillColor="@color/type_ice" android:pathData="M29,0.78A28.22,28.22 0,1 0,57.22 29,28.21 28.21,0 0,0 29,0.78ZM7.11,29 L17,23.32 26.8,29 17,34.68ZM27.9,42.27 L18.06,48L18.06,36.59l9.84,-5.68ZM27.9,27.09 L18.06,21.41L18.06,10.05l9.84,5.68ZM30.1,15.73 L39.94,10.05L39.94,21.41L30.1,27.09ZM39.94,48 L30.1,42.27L30.1,30.91l9.84,5.68ZM41,34.68 L31.2,29 41,23.32 50.89,29Z"/>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+  <path
+      android:pathData="M17.503,9.602L13.005,12L17.503,14.398L22,12L17.503,9.602Z"
+      android:fillColor="@color/type_ice"/>
+  <path
+      android:pathData="M7,8.796L11.497,11.194V6.398L7,4V8.796Z"
+      android:fillColor="@color/type_ice"/>
+  <path
+      android:pathData="M17,4L12.503,6.398V11.194L17,8.796V4Z"
+      android:fillColor="@color/type_ice"/>
+  <path
+      android:pathData="M12.503,17.602L17,20V15.204L12.503,12.806V17.602Z"
+      android:fillColor="@color/type_ice"/>
+  <path
+      android:pathData="M7,20L11.497,17.602V12.806L7,15.204V20Z"
+      android:fillColor="@color/type_ice"/>
+  <path
+      android:pathData="M6.497,9.602L2,12L6.497,14.398L10.995,12L6.497,9.602Z"
+      android:fillColor="@color/type_ice"/>
 </vector>
