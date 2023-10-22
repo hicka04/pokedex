@@ -2,7 +2,7 @@ import DesignSystem
 import shared
 import SwiftUI
 
-extension Pokemon.Type_ {
+public extension Pokemon.Type_ {
     var icon: Image {
         switch self {
         case .normal: DesignSystem.Icons.Types.normal.swiftUIImage

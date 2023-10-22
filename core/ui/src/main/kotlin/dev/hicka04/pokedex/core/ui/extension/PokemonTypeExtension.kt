@@ -1,5 +1,6 @@
 package dev.hicka04.pokedex.core.ui.extension
 
+import androidx.compose.material.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
@@ -55,3 +56,6 @@ internal fun Pokemon.Type.painter(): Painter = painterResource(
         Pokemon.Type.FAIRY -> R.drawable.type_fairy
     }
 )
+
+@Composable
+fun Pokemon.Type.icon() = Icon(painter = painter(), contentDescription = name, tint = color())

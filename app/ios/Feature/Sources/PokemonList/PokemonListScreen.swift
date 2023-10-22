@@ -21,25 +21,40 @@ extension PokemonListScreen {
         let pokemonList: [Pokemon]
         var onAppear: @Sendable () async -> Void = {}
 
+        private let gridItem = GridItem(
+            .adaptive(minimum: 160),
+            spacing: 16
+        )
+
         var body: some View {
-            List(pokemonList) { pokemon in
-                VStack {
-                    OfficialArtworkImage(urlString: pokemon.sprites.officialArtwork)
+            ScrollView {
+                LazyVGrid(columns: [gridItem], spacing: 16) {
+                    ForEach(pokemonList) { pokemon in
+                        VStack(spacing: 0) {
+                            OfficialArtworkImage(urlString: pokemon.sprites.officialArtwork)
 
-                    VStack(alignment: .leading) {
-                        Text("No.\(pokemon.id)")
-                        Text(pokemon.name)
-                    }
+                            HStack(alignment: .top) {
+                                VStack(alignment: .leading) {
+                                    Text("No.\(pokemon.id)")
+                                        .font(.caption)
+                                    Text(pokemon.name)
+                                        .font(.title3)
+                                }
+                                .frame(
+                                    maxWidth: .infinity,
+                                    alignment: .leading
+                                )
 
-                    HStack {
-                        TypeTag(type: pokemon.types.first)
-
-                        if let second = pokemon.types.second {
-                            TypeTag(type: second)
+                                VStack(spacing: 0) {
+                                    pokemon.types.first.icon
+                                    pokemon.types.second?.icon
+                                }
+                            }.padding(.horizontal, 8)
                         }
                     }
-                }
-            }.task(onAppear)
+                }.padding(.horizontal, 16)
+            }
+            .task(onAppear)
         }
     }
 }
