@@ -1,6 +1,7 @@
 import SwiftUI
 import shared
 import PokemonList
+import PokemonDetail
 
 @main
 struct iOSApp: App {
@@ -10,7 +11,12 @@ struct iOSApp: App {
 
     var body: some Scene {
 		WindowGroup {
-			PokemonListScreen()
+            NavigationStack {
+                PokemonListScreen()
+                    .navigationDestination(for: Pokemon.self) { pokemon in
+                        PokemonDetailScreen(pokemon: pokemon)
+                    }
+            }
 		}
 	}
 }

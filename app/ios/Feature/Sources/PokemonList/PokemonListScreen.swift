@@ -30,30 +30,33 @@ extension PokemonListScreen {
             ScrollView {
                 LazyVGrid(columns: [gridItem], spacing: 16) {
                     ForEach(pokemonList) { pokemon in
-                        VStack(spacing: 0) {
-                            OfficialArtworkImage(urlString: pokemon.sprites.officialArtwork)
+                        NavigationLink(value: pokemon) {
+                            VStack(spacing: 0) {
+                                OfficialArtworkImage(urlString: pokemon.sprites.officialArtwork)
 
-                            HStack(alignment: .top) {
-                                VStack(alignment: .leading) {
-                                    Text("No.\(pokemon.id)")
-                                        .font(.caption)
-                                    Text(pokemon.name)
-                                        .font(.title3)
-                                }
-                                .frame(
-                                    maxWidth: .infinity,
-                                    alignment: .leading
-                                )
+                                HStack(alignment: .top) {
+                                    VStack(alignment: .leading) {
+                                        Text("No.\(pokemon.id)")
+                                            .font(.caption)
+                                        Text(pokemon.name)
+                                            .font(.title3)
+                                    }
+                                    .frame(
+                                        maxWidth: .infinity,
+                                        alignment: .leading
+                                    )
 
-                                VStack(spacing: 0) {
-                                    pokemon.types.first.icon
-                                    pokemon.types.second?.icon
-                                }
-                            }.padding(.horizontal, 8)
+                                    VStack(spacing: 0) {
+                                        pokemon.types.first.icon
+                                        pokemon.types.second?.icon
+                                    }
+                                }.padding(.horizontal, 8)
+                            }
                         }
                     }
                 }.padding(.horizontal, 16)
             }
+            .navigationTitle("Pokedex")
             .task(onAppear)
         }
     }

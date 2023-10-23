@@ -13,6 +13,10 @@ let package = Package(
             name: "PokemonList",
             targets: ["PokemonList"]
         ),
+        .library(
+            name: "PokemonDetail",
+            targets: ["PokemonDetail"]
+        ),
     ],
     dependencies: [
         .package(path: "../Core")
@@ -26,9 +30,20 @@ let package = Package(
                 .product(name: "UI", package: "Core")
             ]
         ),
+        .target(
+            name: "PokemonDetail",
+            dependencies: [
+                .product(name: "shared", package: "Core"),
+                .product(name: "DesignSystem", package: "Core"),
+                .product(name: "UI", package: "Core")
+            ]
+        ),
         .testTarget(
             name: "FeatureTests",
-            dependencies: ["PokemonList"]
+            dependencies: [
+                "PokemonList",
+                "PokemonDetail"
+            ]
         ),
     ]
 )

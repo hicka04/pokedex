@@ -1,5 +1,6 @@
 package dev.hicka04.pokedex.feature.pokemon_list
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -27,16 +28,21 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun PokemonListScreen(
-    viewModel: PokemonListViewModel = koinViewModel()
+    viewModel: PokemonListViewModel = koinViewModel(),
+    onClickPokemon: (Pokemon) -> Unit
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
-    PokemonListScreen(uiState = uiState)
+    PokemonListScreen(
+        uiState = uiState,
+        onClickPokemon = onClickPokemon
+    )
 }
 
 @Composable
 fun PokemonListScreen(
-    uiState: PokemonListUiState
+    uiState: PokemonListUiState,
+    onClickPokemon: (Pokemon) -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -50,7 +56,7 @@ fun PokemonListScreen(
                 modifier = Modifier.padding(paddingValues + PaddingValues(horizontal = 16.dp)),
             ) {
                 items(uiState.pokemonList) { pokemon ->
-                    Column {
+                    Column(modifier = Modifier.clickable { onClickPokemon(pokemon) }) {
                         OfficialArtworkImage(url = pokemon.sprites.officialArtwork)
 
                         Row(
@@ -120,7 +126,8 @@ fun PokemonListScreenPreview() {
                         ),
                     ),
                 ),
-            )
+            ),
+            onClickPokemon = {}
         )
     }
 }
