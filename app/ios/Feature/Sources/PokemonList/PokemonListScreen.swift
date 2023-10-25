@@ -11,7 +11,9 @@ public struct PokemonListScreen: View {
     public var body: some View {
         ContentView(
             pokemonList: viewModel.pokemonList,
-            onAppear: viewModel.onAppear
+            isLoading: viewModel.isLoading,
+            onAppear: viewModel.onAppear,
+            onAppearPokemon: viewModel.onAppearPokemon(pokemon:)
         )
     }
 }
@@ -19,7 +21,9 @@ public struct PokemonListScreen: View {
 extension PokemonListScreen {
     struct ContentView: View {
         let pokemonList: [Pokemon]
+        let isLoading: Bool
         var onAppear: @Sendable () async -> Void = {}
+        var onAppearPokemon: (Pokemon) async -> Void = { _ in }
 
         private let gridItem = GridItem(
             .adaptive(minimum: 160),
@@ -51,10 +55,17 @@ extension PokemonListScreen {
                                         pokemon.types.second?.icon
                                     }
                                 }.padding(.horizontal, 8)
+                            }.task {
+                                await onAppearPokemon(pokemon)
                             }
                         }
                     }
-                }.padding(.horizontal, 16)
+                }.padding(16)
+
+                if isLoading {
+                    ProgressView()
+                        .controlSize(.large)
+                }
             }
             .navigationTitle("Pokedex")
             .task(onAppear)
@@ -63,41 +74,43 @@ extension PokemonListScreen {
 }
 
 #Preview("\(PokemonListScreen.self)") {
-    PokemonListScreen.ContentView(
-        pokemonList: [
-            .init(
-                id: 1,
-                name: "Bulbasaur",
-                types: .init(
-                    first: .grass,
-                    second: .poison
+    NavigationStack {
+        PokemonListScreen.ContentView(
+            pokemonList: [
+                .init(
+                    id: 1,
+                    name: "Bulbasaur",
+                    types: .init(
+                        first: .grass,
+                        second: .poison
+                    ),
+                    sprites: .init(
+                        officialArtwork: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
+                    )
                 ),
-                sprites: .init(
-                    officialArtwork: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
-                )
-            ),
-            .init(
-                id: 2,
-                name: "Ivysaur",
-                types: .init(
-                    first: .grass,
-                    second: .poison
+                .init(
+                    id: 2,
+                    name: "Ivysaur",
+                    types: .init(
+                        first: .grass,
+                        second: .poison
+                    ),
+                    sprites: .init(
+                        officialArtwork: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png"
+                    )
                 ),
-                sprites: .init(
-                    officialArtwork: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/2.png"
-                )
-            ),
-            .init(
-                id: 3,
-                name: "Venusaur",
-                types: .init(
-                    first: .grass,
-                    second: .poison
+                .init(
+                    id: 3,
+                    name: "Venusaur",
+                    types: .init(
+                        first: .grass,
+                        second: .poison
+                    ),
+                    sprites: .init(
+                        officialArtwork: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/3.png"
+                    )
                 ),
-                sprites: .init(
-                    officialArtwork: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/3.png"
-                )
-            ),
-        ]
-    )
+            ], isLoading: true
+        )
+    }
 }
