@@ -22,7 +22,7 @@ class PokemonListViewModel(
     init {
         viewModelScope.launch {
             _uiState.update {
-                it.copy(pokemonList = getPokemonListUseCase())
+                it.copy(pokemonList = getPokemonListUseCase(offset = 0))
             }
         }
     }

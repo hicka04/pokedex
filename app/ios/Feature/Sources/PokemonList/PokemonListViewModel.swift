@@ -20,7 +20,7 @@ final class PokemonListViewModel {
 
     @Sendable func onAppear() async {
         do {
-            pokemonList = try await getPokemonListUseCase()
+            pokemonList = try await getPokemonListUseCase(offset: 0)
         } catch {
             // TODO: handle error
         }

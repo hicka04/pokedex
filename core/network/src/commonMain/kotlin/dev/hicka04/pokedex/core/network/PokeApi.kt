@@ -26,8 +26,8 @@ class PokeApi {
         }
     }
 
-    suspend fun fetchPokemonList(): List<Pokemon> =
-        client.get("$baseUrl/pokemon")
+    suspend fun fetchPokemonList(offset: Int): List<Pokemon> =
+        client.get("$baseUrl/pokemon?offset=$offset&limit=60")
             .body<PokemonListResponse>()
             .results
             .mapAsync { fetchPokemon(it.name) }

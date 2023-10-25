@@ -7,6 +7,6 @@ import dev.hicka04.pokedex.core.network.PokeApi
 class DefaultPokemonRepository(
     private val pokeApi: PokeApi
 ): PokemonRepository {
-    override suspend fun getPokemonList(): List<Pokemon> =
-        pokeApi.fetchPokemonList()
+    override suspend fun getPokemonList(offset: Int): List<Pokemon> =
+        pokeApi.fetchPokemonList(offset = offset)
 }

@@ -8,13 +8,13 @@ import kotlin.native.ObjCName
 interface GetPokemonListUseCase {
     @OptIn(ExperimentalObjCName::class)
     @ObjCName("callAsFunction")
-    suspend operator fun invoke(): List<Pokemon>
+    suspend operator fun invoke(offset: Int): List<Pokemon>
 }
 
 class GetPokemonListInteractor(
     private val pokemonRepository: PokemonRepository
 ): GetPokemonListUseCase {
-    override suspend operator fun invoke(): List<Pokemon> =
-        pokemonRepository.getPokemonList()
+    override suspend operator fun invoke(offset: Int): List<Pokemon> =
+        pokemonRepository.getPokemonList(offset = offset)
 }
 
