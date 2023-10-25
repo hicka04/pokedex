@@ -23,28 +23,25 @@ class PokemonListViewModel(
     fun onAppear() {
         if (uiState.value.pokemonList.isNotEmpty()) return
 
-        viewModelScope.launch {
-            _uiState.update { it.copy(isLoading = true) }
-            val firstPage = getPokemonListUseCase(offset = 0)
-            _uiState.update {
-                it.copy(pokemonList = firstPage, isLoading = false)
-            }
-        }
+        loadPokemonList()
     }
 
     fun onAppearPokemon(pokemon: Pokemon)  {
         if (uiState.value.pokemonList.last() != pokemon) return
 
+        loadPokemonList()
+    }
+
+    private fun loadPokemonList() = viewModelScope.launch {
         _uiState.update { it.copy(isLoading = true) }
-        viewModelScope.launch {
-            val offset = uiState.value.pokemonList.size
-            val nextPage = getPokemonListUseCase(offset = offset)
-            _uiState.update {
-                it.copy(
-                    pokemonList = it.pokemonList + nextPage,
-                    isLoading = false
-                )
-            }
+
+        val offset = uiState.value.pokemonList.size
+        val list = getPokemonListUseCase(offset = offset)
+        _uiState.update {
+            it.copy(
+                pokemonList = it.pokemonList + list,
+                isLoading = false
+            )
         }
     }
 }

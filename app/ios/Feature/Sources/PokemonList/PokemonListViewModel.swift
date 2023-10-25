@@ -22,24 +22,22 @@ final class PokemonListViewModel {
     @Sendable func onAppear() async {
         guard pokemonList.isEmpty else { return }
 
-        do {
-            isLoading = true
-            defer { isLoading = false }
-
-            pokemonList = try await getPokemonListUseCase(offset: 0)
-        } catch {
-            // TODO: handle error
-        }
+        await loadPokemonList()
     }
 
     func onAppearPokemon(pokemon: Pokemon) async {
         guard pokemonList.last == pokemon else { return }
 
+        await loadPokemonList()
+    }
+
+    private func loadPokemonList() async {
         do {
             isLoading = true
             defer { isLoading = false }
 
-            pokemonList += try await getPokemonListUseCase(offset: Int32(pokemonList.count))
+            let offset = Int32(pokemonList.count)
+            pokemonList += try await getPokemonListUseCase(offset: offset)
         } catch {
             // TODO: handle error
         }
