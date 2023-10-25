@@ -5,6 +5,7 @@ import dev.hicka04.pokedex.core.network.response.PokemonListResponse
 import dev.hicka04.pokedex.core.network.response.PokemonResponse
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
+import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.request.get
 import io.ktor.serialization.kotlinx.json.json
@@ -13,10 +14,10 @@ import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 import kotlinx.serialization.json.Json
 
-class PokeApi {
+class PokeApi(engine: HttpClientEngine) {
     private val baseUrl = "https://pokeapi.co/api/v2"
 
-    private val client = HttpClient {
+    private val client = HttpClient(engine) {
         install(ContentNegotiation) {
             json(
                 Json {
