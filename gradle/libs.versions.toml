@@ -5,17 +5,15 @@ sdk-target = "34"
 sdk-min = "26"
 jvm = "1.8"
 agp = "8.1.2"
-org-jetbrains-kotlin-android = "1.9.0"
-org-jetbrains-kotlin-multiplatform = "1.9.10"
-org-jetbrains-kotlin-plugin-serialization = "1.9.0"
+kotlin = "1.9.10"
 co-touchlab-skie = "0.4.20"
 
 # libraries
 ## main
 coroutines = "1.7.3"
-compose = "2023.09.01"
+compose = "2023.10.01"
 compose-compiler = "1.5.3"
-activity-compose = "1.7.2"
+activity-compose = "1.8.0"
 lifecycle = "2.6.2"
 navigation = "2.7.4"
 koin = "3.5.0"
@@ -56,9 +54,9 @@ androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version
 [plugins]
 com-android-application = { id = "com.android.application", version.ref = "agp" }
 com-android-library = { id = "com.android.library", version.ref = "agp" }
-org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "org-jetbrains-kotlin-android" }
-org-jetbrains-kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "org-jetbrains-kotlin-multiplatform" }
-org-jetbrains-kotlin-plugin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "org-jetbrains-kotlin-plugin-serialization" }
+org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+org-jetbrains-kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+org-jetbrains-kotlin-plugin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 co-touchlab-skie = { id = "co.touchlab.skie", version.ref = "co-touchlab-skie" }
 
 [bundles]
