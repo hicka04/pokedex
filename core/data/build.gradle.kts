@@ -4,6 +4,8 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 plugins {
     alias(libs.plugins.org.jetbrains.kotlin.multiplatform)
     alias(libs.plugins.com.android.library)
+    alias(libs.plugins.com.google.devtools.ksp)
+    alias(libs.plugins.org.kodein.mock.mockmp)
 }
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
@@ -42,7 +44,7 @@ kotlin {
         }
         val commonTest by getting {
             dependencies {
-                implementation(kotlin("test"))
+                implementation(libs.bundles.test)
             }
         }
     }
@@ -54,4 +56,8 @@ android {
     defaultConfig {
         minSdk = libs.versions.sdk.min.get().toInt()
     }
+}
+
+mockmp {
+    usesHelper = true
 }

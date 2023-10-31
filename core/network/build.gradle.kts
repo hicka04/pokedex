@@ -42,8 +42,7 @@ kotlin {
         }
         val commonTest by getting {
             dependencies {
-                implementation(libs.org.jetbrains.kotlin.test)
-                implementation(libs.org.jetbrains.kotlinx.coroutines.test)
+                implementation(libs.bundles.test)
                 implementation(libs.io.ktor.client.mock)
             }
         }

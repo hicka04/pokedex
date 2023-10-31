@@ -6,7 +6,9 @@ sdk-min = "26"
 jvm = "1.8"
 agp = "8.1.2"
 kotlin = "1.9.10"
+ksp = "1.9.10-1.0.13"
 co-touchlab-skie = "0.4.20"
+org-kodein-mock-mockmp = "1.15.0"
 
 # libraries
 ## main
@@ -57,10 +59,12 @@ androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version
 [plugins]
 com-android-application = { id = "com.android.application", version.ref = "agp" }
 com-android-library = { id = "com.android.library", version.ref = "agp" }
+com-google-devtools-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 org-jetbrains-kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 org-jetbrains-kotlin-plugin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 co-touchlab-skie = { id = "co.touchlab.skie", version.ref = "co-touchlab-skie" }
+org-kodein-mock-mockmp = { id = "org.kodein.mock.mockmp", version.ref = "org-kodein-mock-mockmp" }
 
 [bundles]
 compose = [
@@ -90,4 +94,8 @@ ktor-ios = [
 coil = [
     "io-coil-kt-coil",
     "io-coil-kt-coil-compose"
+]
+test = [
+    "org-jetbrains-kotlin-test",
+    "org-jetbrains-kotlinx-coroutines-test"
 ]
