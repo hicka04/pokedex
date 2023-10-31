@@ -14,8 +14,8 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFails
 
-class PokeApiTests {
-    private val pokeApi by lazy { PokeApi(MockEngine(config)) }
+class DefaultPokeApiTests {
+    private val defaultPokeApi by lazy { DefaultPokeApi(MockEngine(config)) }
     private val config = MockEngineConfig()
 
     @AfterTest
@@ -31,7 +31,7 @@ class PokeApiTests {
             )
         }
 
-        assertFails { pokeApi.fetchPokemonList(offset = 0) }
+        assertFails { defaultPokeApi.fetchPokemonList(offset = 0) }
     }
 
     @Test
@@ -47,7 +47,7 @@ class PokeApiTests {
             )
         }
 
-        assertFails { pokeApi.fetchPokemonList(offset = 0) }
+        assertFails { defaultPokeApi.fetchPokemonList(offset = 0) }
     }
 
     @Test
@@ -102,7 +102,7 @@ class PokeApiTests {
         }
 
         assertEquals(
-            pokeApi.fetchPokemonList(offset = 0),
+            defaultPokeApi.fetchPokemonList(offset = 0),
             listOf(
                 Pokemon(
                     id = 1,

@@ -14,7 +14,11 @@ import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 import kotlinx.serialization.json.Json
 
-class PokeApi(engine: HttpClientEngine) {
+interface PokeApi {
+    suspend fun fetchPokemonList(offset: Int): List<Pokemon>
+}
+
+class DefaultPokeApi(engine: HttpClientEngine) : PokeApi {
     private val baseUrl = "https://pokeapi.co/api/v2"
 
     private val client = HttpClient(engine) {
@@ -27,7 +31,7 @@ class PokeApi(engine: HttpClientEngine) {
         }
     }
 
-    suspend fun fetchPokemonList(offset: Int): List<Pokemon> =
+    override suspend fun fetchPokemonList(offset: Int): List<Pokemon> =
         client.get("$baseUrl/pokemon?offset=$offset&limit=60")
             .body<PokemonListResponse>()
             .results
