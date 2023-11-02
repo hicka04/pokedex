@@ -32,16 +32,23 @@ class PokemonListViewModel(
         loadPokemonList()
     }
 
-    private fun loadPokemonList() = viewModelScope.launch {
+    private fun loadPokemonList() {
+        if (uiState.value.isLoading) return
+
         _uiState.update { it.copy(isLoading = true) }
 
-        val offset = uiState.value.pokemonList.size
-        val list = getPokemonListUseCase(offset = offset)
-        _uiState.update {
-            it.copy(
-                pokemonList = it.pokemonList + list,
-                isLoading = false
-            )
+        viewModelScope.launch {
+            val offset = uiState.value.pokemonList.size
+            try {
+                val list = getPokemonListUseCase(offset = offset)
+                _uiState.update {
+                    it.copy(pokemonList = it.pokemonList + list)
+                }
+            } catch (e: Throwable) {
+                // TODO: handle error
+            } finally {
+                _uiState.update { it.copy(isLoading = false) }
+            }
         }
     }
 }

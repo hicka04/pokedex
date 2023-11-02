@@ -32,6 +32,8 @@ final class PokemonListViewModel {
     }
 
     private func loadPokemonList() async {
+        guard !isLoading else { return }
+
         do {
             isLoading = true
             defer { isLoading = false }
