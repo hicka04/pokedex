@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import dev.hicka04.pokedex.core.designsystem.PokedexTheme
 import dev.hicka04.pokedex.core.model.Pokemon
 import dev.hicka04.pokedex.core.ui.component.OfficialArtworkImage
+import dev.hicka04.pokedex.core.ui.component.PokemonCell
 import dev.hicka04.pokedex.core.ui.extension.icon
 import org.koin.androidx.compose.koinViewModel
 
@@ -69,29 +70,10 @@ fun PokemonListScreen(
                 modifier = Modifier.padding(paddingValues),
             ) {
                 items(uiState.pokemonList) { pokemon ->
-                    Column(modifier = Modifier.clickable { onClickPokemon(pokemon) }) {
-                        OfficialArtworkImage(url = pokemon.sprites.officialArtwork)
-
-                        Row(
-                            modifier = Modifier.padding(horizontal = 8.dp)
-                        ) {
-                            Column(modifier = Modifier.weight(1f)) {
-                                Text(
-                                    text = "No.${pokemon.id}",
-                                    style = MaterialTheme.typography.caption
-                                )
-                                Text(
-                                    text = pokemon.name,
-                                    style = MaterialTheme.typography.h6
-                                )
-                            }
-
-                            Column {
-                                pokemon.types.first.icon()
-                                pokemon.types.second?.icon()
-                            }
-                        }
-                    }
+                    PokemonCell(
+                        pokemon = pokemon,
+                        modifier = Modifier.clickable { onClickPokemon(pokemon) }
+                    )
 
                     LaunchedEffect(Unit) {
                         onAppearPokemon(pokemon)

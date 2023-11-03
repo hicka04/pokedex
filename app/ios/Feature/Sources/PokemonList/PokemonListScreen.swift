@@ -35,29 +35,10 @@ extension PokemonListScreen {
                 LazyVGrid(columns: [gridItem], spacing: 16) {
                     ForEach(pokemonList) { pokemon in
                         NavigationLink(value: pokemon) {
-                            VStack(spacing: 0) {
-                                OfficialArtworkImage(urlString: pokemon.sprites.officialArtwork)
-
-                                HStack(alignment: .top) {
-                                    VStack(alignment: .leading) {
-                                        Text("No.\(pokemon.id)")
-                                            .font(.caption)
-                                        Text(pokemon.name)
-                                            .font(.title3)
-                                    }
-                                    .frame(
-                                        maxWidth: .infinity,
-                                        alignment: .leading
-                                    )
-
-                                    VStack(spacing: 0) {
-                                        pokemon.types.first.icon
-                                        pokemon.types.second?.icon
-                                    }
-                                }.padding(.horizontal, 8)
-                            }.task {
-                                await onAppearPokemon(pokemon)
-                            }
+                            PokemonCell(pokemon: pokemon)
+                                .task {
+                                    await onAppearPokemon(pokemon)
+                                }
                         }
                     }
                 }.padding(16)
