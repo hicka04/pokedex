@@ -13,10 +13,13 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.material.AlertDialog
+import androidx.compose.material.Button
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
+import androidx.compose.material.TextButton
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -46,7 +49,8 @@ fun PokemonListScreen(
         uiState = uiState,
         onAppear = viewModel::onAppear,
         onAppearPokemon = viewModel::onAppearPokemon,
-        onClickPokemon = onClickPokemon
+        onClickPokemon = onClickPokemon,
+        onDismissErrorAlert = viewModel::onDismissErrorAlertDialog
     )
 }
 
@@ -55,7 +59,8 @@ fun PokemonListScreen(
     uiState: PokemonListUiState,
     onAppear: () -> Unit = {},
     onAppearPokemon: (Pokemon) -> Unit = {},
-    onClickPokemon: (Pokemon) -> Unit = {}
+    onClickPokemon: (Pokemon) -> Unit = {},
+    onDismissErrorAlert: () -> Unit = {}
 ) {
     Scaffold(
         topBar = {
@@ -90,6 +95,18 @@ fun PokemonListScreen(
                         }
                     }
                 }
+            }
+
+            uiState.exception?.let { exception ->
+                AlertDialog(
+                    onDismissRequest = onDismissErrorAlert,
+                    confirmButton = {
+                        TextButton(onClick = onDismissErrorAlert) {
+                            Text(text = "OK")
+                        }
+                    },
+                    title = { Text(text = exception.localizedMessage ?: "Error") }
+                )
             }
 
             LaunchedEffect(Unit) {

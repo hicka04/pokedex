@@ -13,6 +13,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 import kotlinx.serialization.json.Json
+import kotlin.coroutines.cancellation.CancellationException
 
 interface PokeApi {
     suspend fun fetchPokemonList(offset: Int): List<Pokemon>
@@ -29,6 +30,7 @@ class DefaultPokeApi(engine: HttpClientEngine) : PokeApi {
                 }
             )
         }
+        expectSuccess = true
     }
 
     override suspend fun fetchPokemonList(offset: Int): List<Pokemon> =

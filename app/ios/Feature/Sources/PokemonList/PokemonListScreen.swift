@@ -4,7 +4,7 @@ import UI
 
 @MainActor
 public struct PokemonListScreen: View {
-    let viewModel = PokemonListViewModel()
+    @State var viewModel = PokemonListViewModel()
 
     public init() {}
 
@@ -12,6 +12,7 @@ public struct PokemonListScreen: View {
         ContentView(
             pokemonList: viewModel.pokemonList,
             isLoading: viewModel.isLoading,
+            error: $viewModel.error,
             onAppear: viewModel.onAppear,
             onAppearPokemon: viewModel.onAppearPokemon(pokemon:)
         )
@@ -22,6 +23,7 @@ extension PokemonListScreen {
     struct ContentView: View {
         let pokemonList: [Pokemon]
         let isLoading: Bool
+        @Binding var error: Error?
         var onAppear: @Sendable () async -> Void = {}
         var onAppearPokemon: (Pokemon) async -> Void = { _ in }
 
@@ -48,6 +50,7 @@ extension PokemonListScreen {
                         .controlSize(.large)
                 }
             }
+            .errorAlert(error: $error)
             .navigationTitle("Pokedex")
             .task(onAppear)
         }
@@ -91,7 +94,9 @@ extension PokemonListScreen {
                         officialArtwork: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/3.png"
                     )
                 ),
-            ], isLoading: true
+            ], 
+            isLoading: true,
+            error: .constant(nil)
         )
     }
 }

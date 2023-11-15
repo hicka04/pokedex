@@ -6,6 +6,7 @@ import Observation
 final class PokemonListViewModel {
     private(set) var pokemonList: [Pokemon] = []
     private(set) var isLoading: Bool = false
+    var error: Error?
 
     private let getPokemonListUseCase: GetPokemonListUseCase
 
@@ -41,7 +42,7 @@ final class PokemonListViewModel {
             let offset = Int32(pokemonList.count)
             pokemonList += try await getPokemonListUseCase(offset: offset)
         } catch {
-            // TODO: handle error
+            self.error = error
         }
     }
 }

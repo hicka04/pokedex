@@ -8,6 +8,7 @@ import kotlin.native.ObjCName
 interface GetPokemonListUseCase {
     @OptIn(ExperimentalObjCName::class)
     @ObjCName("callAsFunction")
+    @Throws(Exception::class)
     suspend operator fun invoke(offset: Int): List<Pokemon>
 }
 
