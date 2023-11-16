@@ -31,7 +31,7 @@ public struct TypeTag: View {
 }
 
 #Preview("\(TypeTag.self)") {
-    ForEach(Pokemon.Type_.allCases, id: \.rawValue) { type in
+    ForEach(Pokemon.Type_.allCases, id: \.name) { type in
         TypeTag(type: type)
     }
 }
