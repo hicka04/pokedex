@@ -19,7 +19,8 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(path: "../Core")
+        .package(path: "../Core"),
+        .package(url: "https://github.com/apple/swift-testing.git", from: "0.1.0")
     ],
     targets: [
         .target(
@@ -42,7 +43,8 @@ let package = Package(
             name: "FeatureTests",
             dependencies: [
                 "PokemonList",
-                "PokemonDetail"
+                "PokemonDetail",
+                .product(name: "Testing", package: "swift-testing")
             ]
         ),
     ]

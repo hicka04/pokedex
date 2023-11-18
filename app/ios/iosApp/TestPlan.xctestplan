@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "0E66E4CE-B8BD-4B56-9452-F9702F55AE4E",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Feature",
+        "identifier" : "FeatureTests",
+        "name" : "FeatureTests"
+      }
+    }
+  ],
+  "version" : 1
+}

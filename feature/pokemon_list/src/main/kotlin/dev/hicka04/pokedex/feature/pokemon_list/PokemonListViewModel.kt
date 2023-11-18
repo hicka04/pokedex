@@ -18,7 +18,7 @@ data class PokemonListUiState(
 
 class PokemonListViewModel(
     private val getPokemonListUseCase: GetPokemonListUseCase
-): ViewModel() {
+) : ViewModel() {
     private val _uiState = MutableStateFlow(PokemonListUiState())
     val uiState = _uiState.asStateFlow()
 
@@ -28,7 +28,7 @@ class PokemonListViewModel(
         loadPokemonList()
     }
 
-    fun onAppearPokemon(pokemon: Pokemon)  {
+    fun onAppearPokemon(pokemon: Pokemon) {
         if (uiState.value.pokemonList.last() != pokemon) return
 
         loadPokemonList()
