@@ -13,9 +13,9 @@ mockmp = "1.15.0"
 # libraries
 ## main
 coroutines = "1.7.3"
-compose = "2023.10.01"
+compose = "2024.01.00"
 compose-compiler = "1.5.4"
-activity-compose = "1.8.0"
+activity-compose = "1.8.2"
 lifecycle = "2.6.2"
 navigation = "2.7.5"
 koin = "3.5.0"
