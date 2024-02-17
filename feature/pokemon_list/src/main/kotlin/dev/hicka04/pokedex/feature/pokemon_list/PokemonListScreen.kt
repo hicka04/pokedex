@@ -3,24 +3,17 @@ package dev.hicka04.pokedex.feature.pokemon_list
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.AlertDialog
-import androidx.compose.material.Button
 import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
-import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -33,9 +26,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import dev.hicka04.pokedex.core.designsystem.PokedexTheme
 import dev.hicka04.pokedex.core.model.Pokemon
-import dev.hicka04.pokedex.core.ui.component.OfficialArtworkImage
 import dev.hicka04.pokedex.core.ui.component.PokemonCell
-import dev.hicka04.pokedex.core.ui.extension.icon
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -62,58 +53,50 @@ fun PokemonListScreen(
     onClickPokemon: (Pokemon) -> Unit = {},
     onDismissErrorAlert: () -> Unit = {}
 ) {
-    Scaffold(
-        topBar = {
-            TopAppBar(title = { Text("Pokedex") })
-        },
-        content = { paddingValues ->
-            LazyVerticalGrid(
-                columns = GridCells.Adaptive(160.dp),
-                contentPadding = PaddingValues(16.dp),
-                verticalArrangement = Arrangement.spacedBy(16.dp),
-                horizontalArrangement = Arrangement.spacedBy(16.dp),
-                modifier = Modifier.padding(paddingValues),
-            ) {
-                items(uiState.pokemonList) { pokemon ->
-                    PokemonCell(
-                        pokemon = pokemon,
-                        modifier = Modifier.clickable { onClickPokemon(pokemon) }
-                    )
-
-                    LaunchedEffect(Unit) {
-                        onAppearPokemon(pokemon)
-                    }
-                }
-
-                if (uiState.isLoading) {
-                    item(span = { GridItemSpan(maxCurrentLineSpan) }) {
-                        Box(
-                            contentAlignment = Alignment.Center,
-                            modifier = Modifier.fillMaxWidth()
-                        ) {
-                            CircularProgressIndicator(modifier = Modifier.size(48.dp))
-                        }
-                    }
-                }
-            }
-
-            uiState.exception?.let { exception ->
-                AlertDialog(
-                    onDismissRequest = onDismissErrorAlert,
-                    confirmButton = {
-                        TextButton(onClick = onDismissErrorAlert) {
-                            Text(text = "OK")
-                        }
-                    },
-                    title = { Text(text = exception.localizedMessage ?: "Error") }
-                )
-            }
+    LazyVerticalGrid(
+        columns = GridCells.Adaptive(160.dp),
+        contentPadding = PaddingValues(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
+    ) {
+        items(uiState.pokemonList) { pokemon ->
+            PokemonCell(
+                pokemon = pokemon,
+                modifier = Modifier.clickable { onClickPokemon(pokemon) }
+            )
 
             LaunchedEffect(Unit) {
-                onAppear()
+                onAppearPokemon(pokemon)
             }
         }
-    )
+
+        if (uiState.isLoading) {
+            item(span = { GridItemSpan(maxCurrentLineSpan) }) {
+                Box(
+                    contentAlignment = Alignment.Center,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    CircularProgressIndicator(modifier = Modifier.size(48.dp))
+                }
+            }
+        }
+    }
+
+    uiState.exception?.let { exception ->
+        AlertDialog(
+            onDismissRequest = onDismissErrorAlert,
+            confirmButton = {
+                TextButton(onClick = onDismissErrorAlert) {
+                    Text(text = "OK")
+                }
+            },
+            title = { Text(text = exception.localizedMessage ?: "Error") }
+        )
+    }
+
+    LaunchedEffect(Unit) {
+        onAppear()
+    }
 }
 
 class PokemonListScreenPreviewParameter: PreviewParameterProvider<PokemonListUiState> {
