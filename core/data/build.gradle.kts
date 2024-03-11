@@ -34,12 +34,13 @@ kotlin {
 
     sourceSets {
         val commonMain by getting {
+            kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
             dependencies {
                 implementation(project(":core:model"))
                 implementation(project(":core:domain"))
                 implementation(project(":core:network"))
                 implementation(libs.org.jetbrains.kotlinx.coroutines.core)
-                implementation(libs.io.insert.koin.core)
+                implementation(libs.bundles.koin)
             }
         }
         val commonTest by getting {
@@ -56,6 +57,10 @@ android {
     defaultConfig {
         minSdk = libs.versions.sdk.min.get().toInt()
     }
+}
+
+dependencies {
+    add("kspCommonMainMetadata", libs.io.insert.koin.ksp.compiler)
 }
 
 mockmp {
