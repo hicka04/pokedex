@@ -2,6 +2,7 @@
 plugins {
     alias(libs.plugins.com.android.library)
     alias(libs.plugins.org.jetbrains.kotlin.android)
+    alias(libs.plugins.com.google.devtools.ksp)
 }
 
 android {
@@ -36,6 +37,9 @@ android {
     kotlinOptions {
         jvmTarget = libs.versions.jvm.get()
     }
+    libraryVariants.forEach { variant ->
+        variant.addJavaSourceFoldersToModel(file("build/generated/ksp/${variant.name}/kotlin"))
+    }
 }
 
 dependencies {
@@ -46,8 +50,9 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.bundles.compose)
     implementation(libs.bundles.lifecycle)
-    implementation(libs.io.insert.koin.core)
+    implementation(libs.bundles.koin)
     implementation(libs.io.insert.koin.androidx.compose)
+    ksp(libs.io.insert.koin.ksp.compiler)
     testImplementation(libs.bundles.test)
     testImplementation(libs.io.mockk)
     testImplementation(libs.app.cash.turbine)
