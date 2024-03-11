@@ -2,7 +2,7 @@ package dev.hicka04.pokedex.android
 
 import android.app.Application
 import dev.hicka04.pokedex.core.data.DataModule
-import dev.hicka04.pokedex.core.domain.di.domainModule
+import dev.hicka04.pokedex.core.domain.DomainModule
 import dev.hicka04.pokedex.feature.pokemon_list.di.featurePokemonListModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -20,11 +20,9 @@ class MainApplication: Application() {
             androidContext(this@MainApplication)
             // Load modules
             modules(
-                listOf(
-                    domainModule,
-                    DataModule().module,
-                    featurePokemonListModule,
-                )
+                DomainModule().module,
+                DataModule().module,
+                featurePokemonListModule,
             )
         }
     }
