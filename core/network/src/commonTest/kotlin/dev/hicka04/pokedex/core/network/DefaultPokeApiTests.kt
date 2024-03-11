@@ -1,6 +1,7 @@
 package dev.hicka04.pokedex.core.network
 
 import dev.hicka04.pokedex.core.model.Pokemon
+import dev.hicka04.pokedex.core.network.pokeapi.DefaultPokeApi
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.MockEngineConfig
 import io.ktor.client.engine.mock.respond

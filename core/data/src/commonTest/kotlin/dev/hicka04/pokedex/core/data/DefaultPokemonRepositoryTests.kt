@@ -2,7 +2,7 @@ package dev.hicka04.pokedex.core.data
 
 import dev.hicka04.pokedex.core.model.Pokemon
 import dev.hicka04.pokedex.core.model.fakePokemon
-import dev.hicka04.pokedex.core.network.PokeApi
+import dev.hicka04.pokedex.core.network.pokeapi.PokeApi
 import kotlinx.coroutines.test.runTest
 import org.kodein.mock.Mock
 import org.kodein.mock.UsesFakes

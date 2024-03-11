@@ -1,6 +1,6 @@
-package dev.hicka04.pokedex.core.network.response
+package dev.hicka04.pokedex.core.network.pokeapi.response
 
-import dev.hicka04.pokedex.core.network.response.common.NamedResponse
+import dev.hicka04.pokedex.core.network.pokeapi.response.common.NamedResponse
 import kotlinx.serialization.Serializable
 
 @Serializable
