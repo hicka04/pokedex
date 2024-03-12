@@ -51,9 +51,8 @@ fun MainScreen() {
                             nullable = false
                         }
                     )
-                ) { entry ->
-                    val name = entry.arguments!!.getString("name")!!
-                    PokemonDetailScreen(name = name)
+                ) {
+                    PokemonDetailScreen()
                 }
             }
         }
