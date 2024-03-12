@@ -1,8 +1,8 @@
-package dev.hicka04.pokedex.core.network
+package dev.hicka04.pokedex.core.network.pokeapi
 
 import dev.hicka04.pokedex.core.model.Pokemon
-import dev.hicka04.pokedex.core.network.response.PokemonListResponse
-import dev.hicka04.pokedex.core.network.response.PokemonResponse
+import dev.hicka04.pokedex.core.network.pokeapi.response.PokemonListResponse
+import dev.hicka04.pokedex.core.network.pokeapi.response.PokemonResponse
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.engine.HttpClientEngine
@@ -13,12 +13,13 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 import kotlinx.serialization.json.Json
-import kotlin.coroutines.cancellation.CancellationException
+import org.koin.core.annotation.Single
 
 interface PokeApi {
     suspend fun fetchPokemonList(offset: Int): List<Pokemon>
 }
 
+@Single
 class DefaultPokeApi(engine: HttpClientEngine) : PokeApi {
     private val baseUrl = "https://pokeapi.co/api/v2"
 
