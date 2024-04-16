@@ -13,7 +13,8 @@ import org.koin.android.annotation.KoinViewModel
 import java.lang.Exception
 
 data class PokemonDetailUiState(
-    val pokemon: Pokemon? = null
+    val pokemon: Pokemon? = null,
+    val exception: Exception? = null
 )
 
 @KoinViewModel
@@ -31,8 +32,10 @@ class PokemonDetailViewModel(
                 val pokemon = getPokemonUseCase(name = name)
                 _uiState.update { it.copy(pokemon = pokemon) }
             } catch (e: Exception) {
-                // TODO: handle error
+                _uiState.update { it.copy(exception = e) }
             }
         }
     }
+
+    fun onDismissErrorAlert() = _uiState.update { it.copy(exception = null) }
 }

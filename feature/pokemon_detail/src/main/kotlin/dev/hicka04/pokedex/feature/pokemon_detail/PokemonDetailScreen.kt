@@ -5,7 +5,10 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.AlertDialog
 import androidx.compose.material.Surface
+import androidx.compose.material.Text
+import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -18,6 +21,7 @@ import dev.hicka04.pokedex.core.model.Pokemon
 import dev.hicka04.pokedex.core.ui.component.OfficialArtworkImage
 import dev.hicka04.pokedex.core.ui.component.TypeTag
 import org.koin.androidx.compose.koinViewModel
+import java.lang.Exception
 
 @Composable
 fun PokemonDetailScreen(
@@ -27,14 +31,18 @@ fun PokemonDetailScreen(
 
     PokemonDetailScreen(
         pokemon = uiState.pokemon,
-        onAppear = viewModel::onAppear
+        exception = uiState.exception,
+        onAppear = viewModel::onAppear,
+        onDismissErrorAlert = viewModel::onDismissErrorAlert
     )
 }
 
 @Composable
 fun PokemonDetailScreen(
     pokemon: Pokemon?,
+    exception: Exception?,
     onAppear: () -> Unit,
+    onDismissErrorAlert: () -> Unit
 ) {
     Surface(
         modifier = Modifier
@@ -70,6 +78,18 @@ fun PokemonDetailScreen(
         }
     }
 
+    if (exception != null) {
+        AlertDialog(
+            onDismissRequest = onDismissErrorAlert,
+            confirmButton = {
+                TextButton(onClick = onDismissErrorAlert) {
+                    Text(text = "OK")
+                }
+            },
+            title = { Text(text = exception.localizedMessage ?: "Error") }
+        )
+    }
+
     LaunchedEffect(Unit) {
         onAppear()
     }
@@ -91,7 +111,9 @@ fun PokemonDetailScreenPreview() {
                     officialArtwork = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
                 ),
             ),
-            onAppear = {}
+            exception = null,
+            onAppear = {},
+            onDismissErrorAlert = {}
         )
     }
 }
