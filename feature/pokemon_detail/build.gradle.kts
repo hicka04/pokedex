@@ -53,7 +53,9 @@ dependencies {
     implementation(libs.bundles.koin)
     implementation(libs.io.insert.koin.androidx.compose)
     ksp(libs.io.insert.koin.ksp.compiler)
-    testImplementation(libs.junit)
+    testImplementation(libs.bundles.test)
+    testImplementation(libs.io.mockk)
+    testImplementation(libs.app.cash.turbine)
     androidTestImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
 }
