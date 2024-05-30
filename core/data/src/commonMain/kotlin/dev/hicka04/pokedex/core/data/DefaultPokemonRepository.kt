@@ -11,4 +11,7 @@ class DefaultPokemonRepository(
 ): PokemonRepository {
     override suspend fun getPokemonList(offset: Int): List<Pokemon> =
         pokeApi.fetchPokemonList(offset = offset)
+
+    override suspend fun getPokemon(name: String): Pokemon =
+        pokeApi.fetchPokemon(name = name)
 }

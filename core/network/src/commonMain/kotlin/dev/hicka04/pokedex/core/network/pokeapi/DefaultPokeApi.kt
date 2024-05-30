@@ -17,6 +17,7 @@ import org.koin.core.annotation.Single
 
 interface PokeApi {
     suspend fun fetchPokemonList(offset: Int): List<Pokemon>
+    suspend fun fetchPokemon(name: String): Pokemon
 }
 
 @Single
@@ -40,7 +41,7 @@ class DefaultPokeApi(engine: HttpClientEngine) : PokeApi {
             .results
             .mapAsync { fetchPokemon(it.name) }
 
-    private suspend fun fetchPokemon(name: String): Pokemon =
+    override suspend fun fetchPokemon(name: String): Pokemon =
         client.get("$baseUrl/pokemon/$name")
             .body<PokemonResponse>()
             .toEntity()

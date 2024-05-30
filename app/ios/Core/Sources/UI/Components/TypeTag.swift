@@ -12,20 +12,23 @@ public struct TypeTag: View {
     }
 
     public var body: some View {
-        HStack {
+        HStack(spacing: 8) {
             type.icon
                 .resizable()
                 .scaledToFit()
+            Spacer()
             Text(type.name)
                 .font(.caption)
                 .fontWeight(.medium)
                 .foregroundColor(type.color)
+            Spacer()
         }
         .frame(height: height)
+        .padding(.leading, 8)
         .padding(.trailing, cornerRadius)
         .overlay {
             RoundedRectangle(cornerRadius: cornerRadius)
-                .strokeBorder(type.color, lineWidth: 2)
+                .stroke(type.color, lineWidth: 2)
         }
     }
 }

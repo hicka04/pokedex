@@ -23,7 +23,7 @@ class DefaultPokemonRepositoryTests : TestsWithMocks() {
 
     @Test
     fun getPokemonList_failure() = runTest {
-        everySuspending { pokeApi.fetchPokemonList(0) } runs { throw Exception() }
+        everySuspending { pokeApi.fetchPokemonList(offset = 0) } runs { throw Exception() }
 
         assertFails { defaultPokemonRepository.getPokemonList(0) }
     }
@@ -31,11 +31,29 @@ class DefaultPokemonRepositoryTests : TestsWithMocks() {
     @Test
     fun getPokemonList_success() = runTest {
         val fakePokemon = fakePokemon()
-        everySuspending { pokeApi.fetchPokemonList(0) } returns listOf(fakePokemon)
+        everySuspending { pokeApi.fetchPokemonList(offset = 0) } returns listOf(fakePokemon)
 
         assertEquals(
             defaultPokemonRepository.getPokemonList(0),
             listOf(fakePokemon)
+        )
+    }
+
+    @Test
+    fun getPokemon_failure() = runTest {
+        everySuspending { pokeApi.fetchPokemon(name = "bulbasaur") } runs { throw Exception() }
+
+        assertFails { defaultPokemonRepository.getPokemon("bulbasaur") }
+    }
+
+    @Test
+    fun getPokemon_success() = runTest {
+        val fakePokemon = fakePokemon()
+        everySuspending { pokeApi.fetchPokemon(name = "bulbasaur") } returns fakePokemon
+
+        assertEquals(
+            defaultPokemonRepository.getPokemon("bulbasaur"),
+            fakePokemon
         )
     }
 }
