@@ -66,3 +66,7 @@ android {
         minSdk = libs.versions.sdk.min.get().toInt()
     }
 }
+
+dependencies {
+    add("kspCommonMainMetadata", libs.io.insert.koin.ksp.compiler)
+}
