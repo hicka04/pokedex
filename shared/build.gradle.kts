@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.org.jetbrains.kotlin.multiplatform)
     alias(libs.plugins.com.android.library)
     alias(libs.plugins.co.touchlab.skie)
+    alias(libs.plugins.com.google.devtools.ksp)
 }
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
