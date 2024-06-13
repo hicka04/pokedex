@@ -47,7 +47,7 @@ kotlin {
                 api(project(":core:domain"))
 
                 implementation(project(":core:data"))
-                implementation(libs.io.insert.koin.core)
+                implementation(libs.bundles.koin)
             }
         }
         val commonTest by getting {
