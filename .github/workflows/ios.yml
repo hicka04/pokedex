@@ -21,6 +21,7 @@ jobs:
 
       - name: Build
         run: |
+          ./gradlew shared:assembleSharedReleaseXCFramework
           xcodebuild build-for-testing -project $project -scheme $scheme -destination "platform=iOS Simulator,name=$device"
 
       - name: Test
