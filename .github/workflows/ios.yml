@@ -21,9 +21,11 @@ jobs:
 
       - name: Build
         run: |
+          set -eo pipefail
           ./gradlew shared:assembleSharedReleaseXCFramework
-          xcodebuild build-for-testing -project $project -scheme $scheme -destination "platform=iOS Simulator,name=$device"
+          xcodebuild build-for-testing -project $project -scheme $scheme -destination "platform=iOS Simulator,name=$device" | xcbeautify
 
       - name: Test
         run: |
-          xcodebuild test-without-building -project $project -scheme $scheme -destination "platform=iOS Simulator,name=$device"
+          set -eo pipefail
+          xcodebuild test-without-building -project $project -scheme $scheme -destination "platform=iOS Simulator,name=$device" | xcbeautify
