@@ -1,0 +1,31 @@
+name: iOS ci
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  project: app/ios/iosApp.xcodeproj
+  scheme: iosApp
+  device: iPhone 15 Pro
+
+jobs:
+  test:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # TODO: Cache
+
+      - name: Build
+        run: |
+          set -eo pipefail
+          ./gradlew shared:assembleSharedReleaseXCFramework
+          xcodebuild build-for-testing -project $project -scheme $scheme -destination "platform=iOS Simulator,name=$device" | xcbeautify
+
+      - name: Test
+        run: |
+          set -eo pipefail
+          xcodebuild test-without-building -project $project -scheme $scheme -destination "platform=iOS Simulator,name=$device" | xcbeautify
