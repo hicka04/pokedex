@@ -3,7 +3,6 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(libs.plugins.org.jetbrains.kotlin.multiplatform)
-    alias(libs.plugins.com.android.library)
     alias(libs.plugins.co.touchlab.skie)
     alias(libs.plugins.com.google.devtools.ksp)
 }
@@ -11,14 +10,6 @@ plugins {
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
 kotlin {
     targetHierarchy.default()
-
-    androidTarget {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = libs.versions.jvm.get()
-            }
-        }
-    }
 
     val xcf = XCFramework()
     listOf(
@@ -56,14 +47,6 @@ kotlin {
                 implementation(kotlin("test"))
             }
         }
-    }
-}
-
-android {
-    namespace = "dev.hicka04.pokedex.shared"
-    compileSdk = libs.versions.sdk.compile.get().toInt()
-    defaultConfig {
-        minSdk = libs.versions.sdk.min.get().toInt()
     }
 }
 
