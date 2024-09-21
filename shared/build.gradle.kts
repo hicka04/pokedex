@@ -3,21 +3,13 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(libs.plugins.org.jetbrains.kotlin.multiplatform)
-    alias(libs.plugins.com.android.library)
     alias(libs.plugins.co.touchlab.skie)
+    alias(libs.plugins.com.google.devtools.ksp)
 }
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
 kotlin {
     targetHierarchy.default()
-
-    androidTarget {
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = libs.versions.jvm.get()
-            }
-        }
-    }
 
     val xcf = XCFramework()
     listOf(
@@ -41,12 +33,13 @@ kotlin {
 
     sourceSets {
         val commonMain by getting {
+            kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
             dependencies {
                 api(project(":core:model"))
                 api(project(":core:domain"))
 
                 implementation(project(":core:data"))
-                implementation(libs.io.insert.koin.core)
+                implementation(libs.bundles.koin)
             }
         }
         val commonTest by getting {
@@ -57,10 +50,6 @@ kotlin {
     }
 }
 
-android {
-    namespace = "dev.hicka04.pokedex.shared"
-    compileSdk = libs.versions.sdk.compile.get().toInt()
-    defaultConfig {
-        minSdk = libs.versions.sdk.min.get().toInt()
-    }
+dependencies {
+    add("kspCommonMainMetadata", libs.io.insert.koin.ksp.compiler)
 }
