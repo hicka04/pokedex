@@ -1,27 +1,31 @@
+rootProject.name = "pokedex"
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 pluginManagement {
     repositories {
-        google()
-        gradlePluginPortal()
+        google {
+            mavenContent {
+                includeGroupAndSubgroups("androidx")
+                includeGroupAndSubgroups("com.android")
+                includeGroupAndSubgroups("com.google")
+            }
+        }
         mavenCentral()
+        gradlePluginPortal()
     }
 }
 
 dependencyResolutionManagement {
-    @Suppress("UnstableApiUsage")
     repositories {
-        google()
+        google {
+            mavenContent {
+                includeGroupAndSubgroups("androidx")
+                includeGroupAndSubgroups("com.android")
+                includeGroupAndSubgroups("com.google")
+            }
+        }
         mavenCentral()
     }
 }
 
-rootProject.name = "pokedex"
-include(":app:android")
-include(":shared")
-include(":core:model")
-include(":core:domain")
-include(":core:data")
-include(":core:network")
-include(":core:designsystem")
-include(":core:ui")
-include(":feature:pokemon_list")
-include(":feature:pokemon_detail")
+include(":composeApp")
