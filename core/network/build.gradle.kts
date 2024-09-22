@@ -42,7 +42,7 @@ kotlin {
             implementation(libs.bundles.ktor.ios)
         }
         commonTest.dependencies {
-            implementation(libs.kotlin.test)
+            implementation(libs.bundles.test)
             implementation(libs.ktor.client.mock)
         }
     }
