@@ -110,7 +110,7 @@ class DefaultPokeApiTests {
                     name = "bulbasaur",
                     types = Pokemon.Types(
                         first = Pokemon.Type.GRASS,
-                        second = Pokemon.Type.POISON
+                        second = null
                     ),
                     sprites = Pokemon.Sprites(
                         officialArtwork = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
