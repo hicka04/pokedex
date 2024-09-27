@@ -4,6 +4,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.mokkery)
 }
 
 kotlin {
@@ -33,7 +34,7 @@ kotlin {
             implementation(project(":core:model"))
         }
         commonTest.dependencies {
-            implementation(libs.kotlin.test)
+            implementation(libs.bundles.test)
         }
     }
 }
