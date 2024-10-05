@@ -2,22 +2,26 @@ on:
   pull_request
 
 jobs:
-  build:
-
+  test:
+    strategy:
+      matrix:
+        module:
+          - :core:data
+          - :core:domain
+          - :core:network
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: set up JDK
-      uses: actions/setup-java@v4
-      with:
-        java-version: 17
-        distribution: 'temurin'
-        cache: gradle
+      - name: set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: 17
+          distribution: 'temurin'
+          cache: gradle
 
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
 
-    - name: Build
-      run: ./gradlew build
+      - name: Test
+        run: ./gradlew ${{ matrix.module }}:test
