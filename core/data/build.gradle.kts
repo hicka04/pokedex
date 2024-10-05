@@ -30,7 +30,9 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            //put your multiplatform dependencies here
+            implementation(project(":core:model"))
+            implementation(project(":core:domain"))
+            implementation(project(":core:network"))
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
