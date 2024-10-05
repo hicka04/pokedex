@@ -1,19 +1,16 @@
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
-@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    alias(libs.plugins.org.jetbrains.kotlin.multiplatform)
-    alias(libs.plugins.com.android.library)
+    alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.androidLibrary)
 }
 
-@OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
 kotlin {
-    targetHierarchy.default()
-
     androidTarget {
         compilations.all {
             kotlinOptions {
-                jvmTarget = libs.versions.jvm.get()
+                jvmTarget = JvmTarget.JVM_11.target
             }
         }
     }
@@ -27,27 +24,28 @@ kotlin {
         it.binaries.framework {
             baseName = "model"
             xcf.add(this)
+            isStatic = true
         }
     }
 
     sourceSets {
-        val commonMain by getting {
-            dependencies {
-                //put your multiplatform dependencies here
-            }
+        commonMain.dependencies {
+            //put your multiplatform dependencies here
         }
-        val commonTest by getting {
-            dependencies {
-                implementation(kotlin("test"))
-            }
+        commonTest.dependencies {
+            implementation(libs.kotlin.test)
         }
     }
 }
 
 android {
     namespace = "dev.hicka04.pokedex.core.model"
-    compileSdk = libs.versions.sdk.compile.get().toInt()
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
-        minSdk = libs.versions.sdk.min.get().toInt()
+        minSdk = libs.versions.android.minSdk.get().toInt()
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 }

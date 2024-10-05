@@ -1,21 +1,17 @@
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
-@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    alias(libs.plugins.org.jetbrains.kotlin.multiplatform)
-    alias(libs.plugins.com.android.library)
-    alias(libs.plugins.org.jetbrains.kotlin.plugin.serialization)
-    alias(libs.plugins.com.google.devtools.ksp)
+    alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.kotlinx.serialization)
 }
 
-@OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
 kotlin {
-    targetHierarchy.default()
-
     androidTarget {
         compilations.all {
             kotlinOptions {
-                jvmTarget = libs.versions.jvm.get()
+                jvmTarget = JvmTarget.JVM_11.target
             }
         }
     }
@@ -29,46 +25,37 @@ kotlin {
         it.binaries.framework {
             baseName = "network"
             xcf.add(this)
+            isStatic = true
         }
     }
 
     sourceSets {
-        val commonMain by getting {
-            kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
-            dependencies {
-                implementation(project(":core:model"))
-                implementation(libs.org.jetbrains.kotlinx.coroutines.core)
-                implementation(libs.bundles.ktor.multiplatform)
-                implementation(libs.bundles.koin)
-            }
+        commonMain.dependencies {
+            implementation(project(":core:model"))
+            implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.bundles.ktor.common)
         }
-        val commonTest by getting {
-            dependencies {
-                implementation(libs.bundles.test)
-                implementation(libs.io.ktor.client.mock)
-            }
+        androidMain.dependencies {
+            implementation(libs.bundles.ktor.android)
         }
-        val androidMain by getting {
-            dependencies {
-                implementation(libs.bundles.ktor.android)
-            }
+        iosMain.dependencies {
+            implementation(libs.bundles.ktor.ios)
         }
-        val iosMain by getting {
-            dependencies {
-                implementation(libs.bundles.ktor.ios)
-            }
+        commonTest.dependencies {
+            implementation(libs.bundles.test)
+            implementation(libs.ktor.client.mock)
         }
     }
 }
 
 android {
     namespace = "dev.hicka04.pokedex.core.network"
-    compileSdk = libs.versions.sdk.compile.get().toInt()
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
     defaultConfig {
-        minSdk = libs.versions.sdk.min.get().toInt()
+        minSdk = libs.versions.android.minSdk.get().toInt()
     }
-}
-
-dependencies {
-    add("kspCommonMainMetadata", libs.io.insert.koin.ksp.compiler)
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
 }

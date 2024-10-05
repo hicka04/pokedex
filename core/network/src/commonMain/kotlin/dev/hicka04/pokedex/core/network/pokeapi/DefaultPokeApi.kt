@@ -13,14 +13,12 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 import kotlinx.serialization.json.Json
-import org.koin.core.annotation.Single
 
 interface PokeApi {
     suspend fun fetchPokemonList(offset: Int): List<Pokemon>
     suspend fun fetchPokemon(name: String): Pokemon
 }
 
-@Single
 class DefaultPokeApi(engine: HttpClientEngine) : PokeApi {
     private val baseUrl = "https://pokeapi.co/api/v2"
 

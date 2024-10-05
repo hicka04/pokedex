@@ -1,59 +1,72 @@
 package dev.hicka04.pokedex.core.data
 
 import dev.hicka04.pokedex.core.model.Pokemon
-import dev.hicka04.pokedex.core.model.fakePokemon
 import dev.hicka04.pokedex.core.network.pokeapi.PokeApi
+import dev.mokkery.answering.returns
+import dev.mokkery.answering.throws
+import dev.mokkery.everySuspend
+import dev.mokkery.mock
 import kotlinx.coroutines.test.runTest
-import org.kodein.mock.Mock
-import org.kodein.mock.UsesFakes
-import org.kodein.mock.tests.TestsWithMocks
+import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFails
 
-@UsesFakes(Pokemon::class)
-class DefaultPokemonRepositoryTests : TestsWithMocks() {
-    override fun setUpMocks() = injectMocks(mocker)
+class DefaultPokemonRepositoryTests {
+    private val pokeApi: PokeApi = mock()
 
-    @Mock lateinit var pokeApi: PokeApi
+    private lateinit var defaultPokemonRepository: DefaultPokemonRepository
 
-    private val defaultPokemonRepository by withMocks {
-        DefaultPokemonRepository(pokeApi = pokeApi)
+    private val pokemon = Pokemon(
+        id = 1,
+        name = "bulbasaur",
+        types = Pokemon.Types(
+            first = Pokemon.Type.GRASS,
+            second = Pokemon.Type.POISON
+        ),
+        sprites = Pokemon.Sprites(
+            officialArtwork = ""
+        )
+    )
+
+    @BeforeTest
+    fun setup() {
+        defaultPokemonRepository = DefaultPokemonRepository(
+            pokeApi = pokeApi
+        )
     }
 
     @Test
     fun getPokemonList_failure() = runTest {
-        everySuspending { pokeApi.fetchPokemonList(offset = 0) } runs { throw Exception() }
+        everySuspend { pokeApi.fetchPokemonList(offset = 0) } throws Exception()
 
         assertFails { defaultPokemonRepository.getPokemonList(0) }
     }
 
     @Test
     fun getPokemonList_success() = runTest {
-        val fakePokemon = fakePokemon()
-        everySuspending { pokeApi.fetchPokemonList(offset = 0) } returns listOf(fakePokemon)
+        everySuspend { pokeApi.fetchPokemonList(offset = 0) } returns listOf(pokemon)
 
         assertEquals(
             defaultPokemonRepository.getPokemonList(0),
-            listOf(fakePokemon)
+            listOf(pokemon)
         )
     }
 
     @Test
     fun getPokemon_failure() = runTest {
-        everySuspending { pokeApi.fetchPokemon(name = "bulbasaur") } runs { throw Exception() }
+        everySuspend { pokeApi.fetchPokemon(name = "bulbasaur") } throws Exception()
 
         assertFails { defaultPokemonRepository.getPokemon("bulbasaur") }
     }
 
     @Test
     fun getPokemon_success() = runTest {
-        val fakePokemon = fakePokemon()
-        everySuspending { pokeApi.fetchPokemon(name = "bulbasaur") } returns fakePokemon
+        everySuspend { pokeApi.fetchPokemon(name = "bulbasaur") } returns pokemon
 
         assertEquals(
             defaultPokemonRepository.getPokemon("bulbasaur"),
-            fakePokemon
+            pokemon
         )
     }
 }
